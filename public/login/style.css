@@ -1,0 +1,179 @@
+.center-div {
+  text-align: center;
+}
+
+.formBack{
+  background-color: #8E288C; 
+  color: white;
+}
+
+.back {
+  background-color: #ffffff;
+}
+
+.bodyBackground {
+  background-color: #f3f4f5;
+}
+
+.radious {
+  border: none;
+  border-radius: 20px !important;
+}
+
+.navbar-toggler {
+  border: none !important;
+}
+
+.linkStyle {
+  text-decoration: none;
+  color: black;
+}
+
+.linkStyle:hover {
+  color: #198754;
+}
+
+.linkStyle2 {
+  text-decoration: none;
+  color: black;
+}
+
+.footerHeading {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.carousel .carousel-item {
+  height: 500px;
+}
+
+.carousel-item img {
+  position: absolute;
+  object-fit: cover;
+  top: 0;
+  left: 0;
+  min-height: 500px;
+}
+
+/* youtube videos */
+.iframe-container {
+  position: relative;
+  width: 100%;
+}
+.iframe-container iframe {
+  width: 100%;
+}
+
+.middle {
+  margin: auto;
+}
+
+.formWidth {
+  max-width: 400px;
+  margin: auto;
+}
+
+/*  */
+.avatar-container {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  overflow: hidden;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  cursor: pointer;
+  margin: auto;
+}
+
+.avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+.avatar-input {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 30px;
+  opacity: 1;
+  cursor: pointer;
+}
+
+.camera-icon {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  color: #000;
+}
+
+.terms{
+  text-decoration: none;
+  color: #157347;
+}
+
+/* slider image*/
+
+.wrapper{
+    margin: auto;
+    
+}
+
+.slider{
+  overflow-x:scroll;     
+  white-space: nowrap;
+}
+
+.slider img{
+  height: auto;
+}
+
+.slider img:hover{
+  transform: scale(1.1);
+  background-color: rgb(76, 155, 187);
+}
+
+::-webkit-scrollbar {
+  height: 5px;
+  width: 10px;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* whats app button */
+.float{
+	position:fixed;
+	width:60px;
+	height:60px;
+	bottom:40px;
+	right:40px;
+	background-color:#25d366;
+	color:#FFF;
+	border-radius:50px;
+	text-align:center;
+  font-size:30px;
+	box-shadow: 2px 2px 3px #999;
+  z-index:100;
+}
+
+.my-float{
+	margin-top:16px;
+}
