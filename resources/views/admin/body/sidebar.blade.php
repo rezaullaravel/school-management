@@ -477,6 +477,29 @@
                     {{-- exam routine end --}}
 
 
+                    {{-- student id card --}}
+                    <li class="nav-item {{ request()->is('admin/student-idcard/generate*') ? 'menu-open' : '' }}">
+                        <a href="#" class="nav-link {{ request()->is('admin/student-idcard/generate*') ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-chart-pie"></i>
+                            <p>
+                                Student Id Card
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('admin.student-idcard.generate') }}"
+                                    class="nav-link {{ request()->is('admin/student-idcard/generate') ? 'active' : '' }}"
+                                    data-turbolinks-action="replace">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Id Card Generate</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    {{-- student id card end --}}
+
+
                     <li class="nav-item {{ request()->is('admin/frontend/setting*') ? 'menu-open' : '' }}">
                         <a href="#"
                             class="nav-link {{ request()->is('admin/frontend/setting*') ? 'active' : '' }}">

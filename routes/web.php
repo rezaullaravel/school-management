@@ -21,6 +21,7 @@ use App\Http\Controllers\Admin\ExamRoutineController;
 use App\Http\Controllers\Admin\TeacherCrudController;
 use App\Http\Controllers\Admin\ClassRoutineController;
 use App\Http\Controllers\Frontend\FrontHomeController;
+use App\Http\Controllers\Admin\StudentIdcardController;
 use App\Http\Controllers\Admin\FrontendSettingController;
 use App\Http\Controllers\Teacher\TeacherProfileController;
 use App\Http\Controllers\Admin\StudentAttendenceController;
@@ -166,6 +167,12 @@ Route::prefix('admin')->middleware(['admin'])->group(function () {
     Route::post('/e_xamination/routine/update/{id}',[ExamRoutineController::class,'update'])->name('admin.exam-routine.update');
     Route::get('/e_xamination/routine/delete/{id}',[ExamRoutineController::class,'delete'])->name('admin.examination.routine.delete');
     Route::post('/delete',[ExamRoutineController::class,'deleteAllSelected'])->name('delete.multiple');
+
+
+    //student id card
+
+    Route::get('/student-idcard/generate',[StudentIdcardController::class,'index'])->name('admin.student-idcard.generate');
+    Route::post('/student-idcard/download',[StudentIdcardController::class,'downloadPdf'])->name('admin.student-idcard.download');
 
 
 
