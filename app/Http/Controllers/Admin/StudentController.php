@@ -156,7 +156,7 @@ class StudentController extends Controller
             }
             $photo = $request->file('birth_certificate');
             $photoName = rand().'.'.$photo->getClientOriginalName();
-             $request->birth_certificate->move(public_path('upload/admin_images'), $imageName);
+             $request->birth_certificate->move(public_path('upload/admin_images'), $photoName);
             $certificate_path = 'upload/student_images/'.$photoName;
             $student->birth_certificate = $certificate_path;
         }
