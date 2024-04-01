@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Clas;
 use App\Models\Week;
+use App\Models\Student;
 use App\Models\Subject;
 use App\Models\ClassRoutine;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Session;
 
 class ClassRoutineController extends Controller
 {
@@ -56,6 +58,16 @@ class ClassRoutineController extends Controller
         $classes = Clas::all();
         $weeks = Week::all();
         return view('admin.class_routine.view',compact('classes','weeks'));
+    }//end method
+
+
+    //view class routine from student
+    public function viewclassRoutineFromStudent(Request $request){
+        $id = Session::get('studentId');
+        $student = Student::where('id', $id)->first();
+        $class = Clas::where('id', $student->clas_id)->first();
+        $weeks = Week::all();
+        return view('student.class_routine.view',compact('class','weeks'));
     }//end method
 
 

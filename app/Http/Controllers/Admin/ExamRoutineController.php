@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Clas;
 use App\Models\Exam;
+use App\Models\Student;
 use App\Models\Subject;
 use App\Models\ExamRoutine;
 use App\Models\SessionModel;
@@ -86,6 +87,18 @@ class ExamRoutineController extends Controller
         $routines = ExamRoutine::where('clas_id',$request->clas_id)->where('exam_id',$request->exam_id)->where('session_id',$request->session_id)->get();
         return view('admin.exam_routine.view',compact('classes','subjects','exams','sessions','routines'));
     }//end method
+
+
+    //exam routine view from student
+    public function viewFromStudent(Request $request){
+        $id = Session::get('studentId');
+        $student = Student::where('id', $id)->first();
+        $class = Clas::where('id', $student->clas_id)->first();
+        $exams = Exam::all();
+        $session = SessionModel::where('id',$student->session_id)->first();
+        $routines = ExamRoutine::where('clas_id',$request->clas_id)->where('exam_id',$request->exam_id)->where('session_id',$request->session_id)->get();
+        return view('student.exam_routine.view',compact('class','exams','session','routines','routines'));
+    }
 
 
     //exam routine manage

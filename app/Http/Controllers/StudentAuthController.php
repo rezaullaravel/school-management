@@ -53,8 +53,7 @@ class StudentAuthController extends Controller
 
     //student dashboard
     public function studentDashboard(){
-
-        return view('student.student_dashboard');
+        return view('admin.admin_dashboard');
     }//end method
 
 

@@ -23,6 +23,7 @@ use App\Http\Controllers\Admin\ClassRoutineController;
 use App\Http\Controllers\Frontend\FrontHomeController;
 use App\Http\Controllers\Admin\StudentIdcardController;
 use App\Http\Controllers\Admin\FrontendSettingController;
+use App\Http\Controllers\Student\StudentProfileController;
 use App\Http\Controllers\Teacher\TeacherProfileController;
 use App\Http\Controllers\Admin\StudentAttendenceController;
 use App\Http\Controllers\Guardian\GuardianProfileController;
@@ -270,6 +271,18 @@ Route::post('/student/post-login', [StudentAuthController::class, 'studentPostLo
 Route::middleware(['student'])->group(function () {
     Route::get('/student/dashboard', [StudentAuthController::class, 'studentDashboard'])->name('student.dashboard');
     Route::get('/student/logout', [StudentAuthController::class, 'studentLogout'])->name('student.logout');
+
+    //class routine
+    Route::get('student/class-routine/view',[ClassRoutineController::class,'viewclassRoutineFromStudent'])->name('student.class.routine.view');
+
+    //exam routine
+    Route::get('student/exam-routine/view',[ExamRoutineController::class,'viewFromStudent'])->name('student.exam.routine.view');
+
+    //student profile
+    Route::post('/student/profile/update/{id}',[StudentProfileController::class,'updateProfile'])->name('student.profile.update');
+    Route::get('/student/passwrod/change',[StudentProfileController::class,'changePassword'])->name('student.passwrod.change');
+    Route::post('/student/update/passwrod',[StudentProfileController::class,'updatePassword'])->name('student.update.password');
+
 });
 /*===================student all route end====================  */
 

@@ -60,6 +60,22 @@
         @endif
 
 
+        @if (Session::get('studentId'))
+            @php
+                $student = App\Models\Student::where('id', Session::get('studentId'))->first();
+            @endphp
+            <div class="user-panel d-flex mb-3 mt-3 pb-3">
+                <div class="image">
+                    <img src="{{ $student->image ? asset($student->image) : asset('backend/dist/img/avatar5.png') }}"
+                        class="img-circle elevation-2" alt="User Image">
+                </div>
+                <div class="info">
+                    <a href="{{ route('student.dashboard') }}" class="d-block">{{ $student->name }}</a>
+                </div>
+            </div>
+          @endif
+
+
         @if (Session::get('guardianId'))
             @php
                 $guardian = App\Models\Guardian::where('id', Session::get('guardianId'))->first();
@@ -823,9 +839,77 @@
         {{-- guardian all route end --}}
 
 
-        <!-- Sidebar Menu -->
+        {{-- student all route start --}}
+        @if (Session::get('studentId'))
+            <nav class="mt-2">
+                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                    data-accordion="false">
+                    <li class="nav-item {{ request()->is('student/class-routine*') ? 'menu-open' : '' }}">
+                        <a href="#"
+                            class="nav-link {{ request()->is('student/class-routine*') ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-chart-pie"></i>
+                            <p>
+                                Class Routine
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
 
-        <!-- /.sidebar-menu -->
+
+                            <li class="nav-item">
+                                <a href="{{ route('student.class.routine.view') }}"
+                                    class="nav-link {{ request()->is('student/class-routine/view') ? 'active' : '' }}"
+                                    data-turbolinks-action="replace">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Class Routine</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+
+                    <li class="nav-item {{ request()->is('student/exam-routine*') ? 'menu-open' : '' }}">
+                        <a href="#"
+                            class="nav-link {{ request()->is('student/exam-routine*') ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-chart-pie"></i>
+                            <p>
+                                Exam Routine
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+
+
+                            <li class="nav-item">
+                                <a href="{{ route('student.exam.routine.view') }}"
+                                    class="nav-link {{ request()->is('student/exam-routine/view') ? 'active' : '' }}"
+                                    data-turbolinks-action="replace">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>View Exam Routine</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+
+                    <li class="nav-item">
+                        <a href="{{ route('student.passwrod.change') }}" class="nav-link {{ request()->is('student/passwrod/change') ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-chart-pie"></i>Change Password
+                        </a>
+                    </li>
+
+
+                    <li class="nav-item">
+                        <a href="{{ route('student.logout') }}" class="nav-link">
+                            <i class="nav-icon fas fa-chart-pie"></i>Logout
+                        </a>
+                    </li>
+
+
+                </ul>
+            </nav>
+        @endif
+        {{-- student all route end --}}
 
     </div>
     <!-- /.sidebar -->
