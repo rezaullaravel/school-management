@@ -1,5 +1,5 @@
 import './bootstrap';
-var Turbolinks = require("turbolinks");
-if (Turbolinks.supported) {
-    Turbolinks.start();
-}
+// var Turbolinks = require("turbolinks");
+// if (Turbolinks.supported) {
+//     Turbolinks.start();
+// }

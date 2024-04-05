@@ -48,7 +48,7 @@
 <link rel="stylesheet" href="{{ asset('/') }}backend/data-table/css/dataTables.min.css">
 
 
-    <script src="{{ asset('js/app.js') }}"></script>
+    {{-- <script src="{{ asset('js/app.js') }}"></script> --}}
 
 
 

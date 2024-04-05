@@ -22,6 +22,7 @@ use App\Http\Controllers\Admin\TeacherCrudController;
 use App\Http\Controllers\Admin\ClassRoutineController;
 use App\Http\Controllers\Frontend\FrontHomeController;
 use App\Http\Controllers\Admin\StudentIdcardController;
+use App\Http\Controllers\Admin\FeesCollectionController;
 use App\Http\Controllers\Admin\FrontendSettingController;
 use App\Http\Controllers\Student\StudentProfileController;
 use App\Http\Controllers\Teacher\TeacherProfileController;
@@ -171,9 +172,32 @@ Route::prefix('admin')->middleware(['admin'])->group(function () {
 
 
     //student id card
-
     Route::get('/student-idcard/generate',[StudentIdcardController::class,'index'])->name('admin.student-idcard.generate');
     Route::post('/student-idcard/download',[StudentIdcardController::class,'downloadPdf'])->name('admin.student-idcard.download');
+
+
+    //fees category
+    Route::get('/fees/category',[FeesCollectionController::class,'categoryIndex'])->name('admin.fees.category');
+    Route::get('/fees/category/add',[FeesCollectionController::class,'categoryAdd'])->name('admin.add.fee.category');
+    Route::post('/fees/category/store',[FeesCollectionController::class,'categoryStore'])->name('admin.store.fee.category');
+    Route::get('/fees/category/edit/{id}',[FeesCollectionController::class,'categoryEdit'])->name('admin.edit.fee.category');
+    Route::post('/fees/category/update/{id}',[FeesCollectionController::class,'categoryUpdate'])->name('admin.update.fee.category');
+    Route::get('/fees/category/delete/{id}',[FeesCollectionController::class,'categoryDelete'])->name('admin.delete.fee.category');
+
+    //fees assign
+    Route::get('/fees/assign',[FeesCollectionController::class,'feesAssign'])->name('admin.fees.assign');
+    Route::post('/fees/assign/insert',[FeesCollectionController::class,'feesAssignInsert'])->name('admin.fees.assign.insert');
+
+    //fees manage
+    Route::get('/fees/manage',[FeesCollectionController::class,'feesManage'])->name('admin.fees.manage');
+    Route::get('/fees/deactive/{id}',[FeesCollectionController::class,'feesDeactive'])->name('admin.fees.deactive');
+    Route::get('/fees/active/{id}',[FeesCollectionController::class,'feesActive'])->name('admin.fees.active');
+    Route::get('/fees/delete/{id}',[FeesCollectionController::class,'feesDelete'])->name('admin.fees.delete');
+
+
+    //fees collection
+    Route::get('/fees/collection',[FeesCollectionController::class,'feesCollection'])->name('admin.fees.collection');
+
 
 
 

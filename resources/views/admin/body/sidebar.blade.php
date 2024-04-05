@@ -135,7 +135,7 @@
                             <li class="nav-item">
                                 <a href="{{ route('admin.all.section') }}"
                                     class="nav-link {{ request()->is('admin/section/all') ? 'active' : '' }}"
-                                    data-turbolinks-action="replace">
+                                    >
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>All Section</p>
                                 </a>
@@ -156,7 +156,7 @@
                             <li class="nav-item">
                                 <a href="{{ route('admin.all.session') }}"
                                     class="nav-link {{ request()->is('admin/session/all') ? 'active' : '' }}"
-                                    data-turbolinks-action="replace">
+                                    >
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>All Session</p>
                                 </a>
@@ -177,7 +177,7 @@
                             <li class="nav-item">
                                 <a href="{{ route('admin.all.designation') }}"
                                     class="nav-link {{ request()->is('admin/designation/all') ? 'active' : '' }}"
-                                    data-turbolinks-action="replace">
+                                    >
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>All Designation</p>
                                 </a>
@@ -198,7 +198,7 @@
                             <li class="nav-item">
                                 <a href="{{ route('admin.all.student') }}"
                                     class="nav-link {{ request()->is('admin/student/all') ? 'active' : '' }}"
-                                    data-turbolinks-action="replace">
+                                    >
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>All Student</p>
                                 </a>
@@ -219,7 +219,7 @@
                             <li class="nav-item">
                                 <a href="{{ route('admin.all.teacher') }}"
                                     class="nav-link {{ request()->is('admin/teacher/all') ? 'active' : '' }}"
-                                    data-turbolinks-action="replace">
+                                    >
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>All Teacher</p>
                                 </a>
@@ -243,7 +243,7 @@
                             <li class="nav-item">
                                 <a href="{{ route('admin.student.attendence') }}"
                                     class="nav-link {{ request()->is('admin/attendence/student') ? 'active' : '' }}"
-                                    data-turbolinks-action="replace">
+                                    >
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Student Attendence</p>
                                 </a>
@@ -252,7 +252,7 @@
                             <li class="nav-item">
                                 <a href="{{ route('admin.student.attendence.report') }}"
                                     class="nav-link {{ request()->is('admin/attendence/student/report') ? 'active' : '' }}"
-                                    data-turbolinks-action="replace">
+                                    >
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Student Attendence Report</p>
                                 </a>
@@ -273,7 +273,7 @@
                             <li class="nav-item">
                                 <a href="{{ route('admin.all.subject') }}"
                                     class="nav-link {{ request()->is('admin/subject/all') ? 'active' : '' }}"
-                                    data-turbolinks-action="replace">
+                                    >
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Subject List</p>
                                 </a>
@@ -294,7 +294,7 @@
                             <li class="nav-item">
                                 <a href="{{ route('admin.all.exam') }}"
                                     class="nav-link {{ request()->is('admin/exam/all') ? 'active' : '' }}"
-                                    data-turbolinks-action="replace">
+                                    >
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Exam List</p>
                                 </a>
@@ -315,7 +315,7 @@
                             <li class="nav-item">
                                 <a href="{{ route('admin.mark.assign') }}"
                                     class="nav-link {{ request()->is('admin/mark/assign') ? 'active' : '' }}"
-                                    data-turbolinks-action="replace">
+                                    >
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Mark Assign</p>
                                 </a>
@@ -336,7 +336,7 @@
                             <li class="nav-item">
                                 <a href="{{ route('admin.result.view') }}"
                                     class="nav-link {{ request()->is('admin/result/view') ? 'active' : '' }}"
-                                    data-turbolinks-action="replace">
+                                    >
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Get Result</p>
                                 </a>
@@ -345,7 +345,7 @@
                             <li class="nav-item">
                                 <a href="{{ route('admin.result.modify') }}"
                                     class="nav-link {{ request()->is('admin/result/modify') ? 'active' : '' }}"
-                                    data-turbolinks-action="replace">
+                                    >
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Modify Result</p>
                                 </a>
@@ -366,7 +366,7 @@
                             <li class="nav-item">
                                 <a href="{{ route('admin.admission.student') }}"
                                     class="nav-link {{ request()->is('admin/admission/student') ? 'active' : '' }}"
-                                    data-turbolinks-action="replace">
+                                    >
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Application List</p>
                                 </a>
@@ -387,7 +387,7 @@
                             <li class="nav-item">
                                 <a href="{{ route('admin.all.subCategory') }}"
                                     class="nav-link {{ request()->is('admin/sub_category/all') ? 'active' : '' }}"
-                                    data-turbolinks-action="replace">
+                                    >
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>SubCategory List</p>
                                 </a>
@@ -408,7 +408,7 @@
                             <li class="nav-item">
                                 <a href="{{ route('admin.slider.all') }}"
                                     class="nav-link {{ request()->is('admin/slider/all') ? 'active' : '' }}"
-                                    data-turbolinks-action="replace">
+                                    >
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>All Slider</p>
                                 </a>
@@ -428,7 +428,7 @@
                             <li class="nav-item">
                                 <a href="{{ route('admin.all.notice') }}"
                                     class="nav-link {{ request()->is('admin/notice/all') ? 'active' : '' }}"
-                                    data-turbolinks-action="replace">
+                                    >
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>All Notice</p>
                                 </a>
@@ -449,7 +449,7 @@
                             <li class="nav-item">
                                 <a href="{{ route('admin.class.routine') }}"
                                     class="nav-link {{ request()->is('admin/Class/routine') ? 'active' : '' }}"
-                                    data-turbolinks-action="replace">
+                                    >
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Add Class Routine</p>
                                 </a>
@@ -472,7 +472,7 @@
                             <li class="nav-item">
                                 <a href="{{ route('admin.examination.routine') }}"
                                     class="nav-link {{ request()->is('admin/e_xamination/routine') ? 'active' : '' }}"
-                                    data-turbolinks-action="replace">
+                                    >
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Add Exam Routine</p>
                                 </a>
@@ -483,7 +483,7 @@
                             <li class="nav-item">
                                 <a href="{{ route('admin.examination.routine.manage') }}"
                                     class="nav-link {{ request()->is('admin/e_xamination/routine/manage') ? 'active' : '' }}"
-                                    data-turbolinks-action="replace">
+                                    >
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Manage Exam Routine</p>
                                 </a>
@@ -506,7 +506,7 @@
                             <li class="nav-item">
                                 <a href="{{ route('admin.student-idcard.generate') }}"
                                     class="nav-link {{ request()->is('admin/student-idcard/generate') ? 'active' : '' }}"
-                                    data-turbolinks-action="replace">
+                                    >
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Id Card Generate</p>
                                 </a>
@@ -514,6 +514,62 @@
                         </ul>
                     </li>
                     {{-- student id card end --}}
+
+
+                    {{-- student fees collection --}}
+                    <li class="nav-item {{ request()->is('admin/fees*') ? 'menu-open' : '' }}">
+                        <a href="#" class="nav-link {{ request()->is('admin/fees*') ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-chart-pie"></i>
+                            <p>
+                                Fees Collection
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('admin.fees.category') }}"
+                                    class="nav-link {{ request()->is('admin/fees/category') ? 'active' : '' }}"
+                                    >
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Fees Category</p>
+                                </a>
+                            </li>
+                        </ul>
+
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('admin.fees.assign') }}"
+                                    class="nav-link {{ request()->is('admin/fees/assign') ? 'active' : '' }}"
+                                    >
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Fees Assign</p>
+                                </a>
+                            </li>
+                        </ul>
+
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('admin.fees.manage') }}"
+                                    class="nav-link {{ request()->is('admin/fees/manage') ? 'active' : '' }}"
+                                    >
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Fees Manage</p>
+                                </a>
+                            </li>
+                        </ul>
+
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('admin.fees.collection') }}"
+                                    class="nav-link {{ request()->is('admin/fees/collection') ? 'active' : '' }}"
+                                    >
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Fees Collection</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    {{-- student fees collection end --}}
 
 
                     <li class="nav-item {{ request()->is('admin/frontend/setting*') ? 'menu-open' : '' }}">
@@ -528,7 +584,7 @@
                             <li class="nav-item">
                                 <a href="{{ route('admin.frontend.setting.logo') }}"
                                     class="nav-link {{ request()->is('admin/frontend/setting/logo') ? 'active' : '' }}"
-                                    data-turbolinks-action="replace">
+                                    >
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Logo Setting</p>
                                 </a>
@@ -539,7 +595,7 @@
                             <li class="nav-item">
                                 <a href="{{ route('admin.frontend.setting.title') }}"
                                     class="nav-link {{ request()->is('admin/frontend/setting/title') ? 'active' : '' }}"
-                                    data-turbolinks-action="replace">
+                                    >
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Title & Date Setting</p>
                                 </a>
@@ -549,7 +605,7 @@
                             <li class="nav-item">
                                 <a href="{{ route('admin.frontend.setting.principal') }}"
                                     class="nav-link {{ request()->is('admin/frontend/setting/principal') ? 'active' : '' }}"
-                                    data-turbolinks-action="replace">
+                                    >
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Principal Data</p>
                                 </a>
@@ -624,7 +680,7 @@
                             <li class="nav-item">
                                 <a href="{{ route('teacher.student.attendence') }}"
                                     class="nav-link {{ request()->is('teacher/attendence/student') ? 'active' : '' }}"
-                                    data-turbolinks-action="replace">
+                                    >
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Student Attendence</p>
                                 </a>
@@ -633,7 +689,7 @@
                             <li class="nav-item">
                                 <a href="{{ route('teacher.student.attendence.report') }}"
                                     class="nav-link {{ request()->is('teacher/attendence/student/report') ? 'active' : '' }}"
-                                    data-turbolinks-action="replace">
+                                    >
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Student Attendence Report</p>
                                 </a>
@@ -654,7 +710,7 @@
                             <li class="nav-item">
                                 <a href="{{ route('teacher.all.subject') }}"
                                     class="nav-link {{ request()->is('teacher/subject/all') ? 'active' : '' }}"
-                                    data-turbolinks-action="replace">
+                                    >
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Subject List</p>
                                 </a>
@@ -676,7 +732,7 @@
                             <li class="nav-item">
                                 <a href="{{ route('teacher.mark.assign') }}"
                                     class="nav-link {{ request()->is('teacher/mark/assign') ? 'active' : '' }}"
-                                    data-turbolinks-action="replace">
+                                    >
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Mark Assign</p>
                                 </a>
@@ -697,7 +753,7 @@
                             <li class="nav-item">
                                 <a href="{{ route('teacher.result.view') }}"
                                     class="nav-link {{ request()->is('teacher/result/view') ? 'active' : '' }}"
-                                    data-turbolinks-action="replace">
+                                    >
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Get Result</p>
                                 </a>
@@ -706,7 +762,7 @@
                             <li class="nav-item">
                                 <a href="{{ route('teacher.result.modify') }}"
                                     class="nav-link {{ request()->is('teacher/result/modify') ? 'active' : '' }}"
-                                    data-turbolinks-action="replace">
+                                    >
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Modify Result</p>
                                 </a>
@@ -784,7 +840,7 @@
                             <li class="nav-item">
                                 <a href="{{ route('guardian.student.attendence.report') }}"
                                     class="nav-link {{ request()->is('guardian/attendence/student/report') ? 'active' : '' }}"
-                                    data-turbolinks-action="replace">
+                                    >
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Student Attendence Report</p>
                                 </a>
@@ -859,7 +915,7 @@
                             <li class="nav-item">
                                 <a href="{{ route('student.class.routine.view') }}"
                                     class="nav-link {{ request()->is('student/class-routine/view') ? 'active' : '' }}"
-                                    data-turbolinks-action="replace">
+                                    >
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Class Routine</p>
                                 </a>
@@ -883,7 +939,7 @@
                             <li class="nav-item">
                                 <a href="{{ route('student.exam.routine.view') }}"
                                     class="nav-link {{ request()->is('student/exam-routine/view') ? 'active' : '' }}"
-                                    data-turbolinks-action="replace">
+                                    >
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>View Exam Routine</p>
                                 </a>
