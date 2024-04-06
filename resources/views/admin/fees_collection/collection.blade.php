@@ -61,7 +61,7 @@
 
                         </div>
                         <div class="card-body">
-                                {{-- @if (count($fees)>0) --}}
+                                @if (count($students)>0)
                                 <table class="table table-bordered">
                                     <thead>
                                        <tr class="text-center">
@@ -74,12 +74,22 @@
                                     </thead>
 
                                     <tbody>
-
+                                       @foreach ($students as $key => $row)
+                                          <tr class="text-center">
+                                             <td>{{ $key+1 }}</td>
+                                             <td>{{ $row->name }}</td>
+                                             <td>{{ $row->roll }}</td>
+                                             <td>{{ $row->registration }}</td>
+                                             <td>
+                                                <a href="{{ route('admin.add.collection',['id'=>$row->id,'class_id'=>Request::get('class_id')]) }}" class="btn btn-info btn-sm" Title="Add Collection"><i class="las la-plus"></i></a>
+                                             </td>
+                                          </tr>
+                                       @endforeach
                                     </tbody>
                                 </table>
-                                {{-- @else
+                                @else
                                   <h4 class="text-danger text-center">No data found....</h4>
-                                @endif --}}
+                                @endif
                         </div>
                     </div>
                 </div>

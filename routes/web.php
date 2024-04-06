@@ -197,6 +197,9 @@ Route::prefix('admin')->middleware(['admin'])->group(function () {
 
     //fees collection
     Route::get('/fees/collection',[FeesCollectionController::class,'feesCollection'])->name('admin.fees.collection');
+    Route::get('/fees/collection/add/{id}/{class_id}',[FeesCollectionController::class,'addCollection'])->name('admin.add.collection');
+    Route::get('/fees/collection/insert/{student_id}/{class_id}/{session_id}/{total}',[FeesCollectionController::class,'insertCollection'])->name('admin.insert.collection');
+    Route::post('/fees/collection/store',[FeesCollectionController::class,'storeCollection'])->name('admin.collection.store');
 
 
 

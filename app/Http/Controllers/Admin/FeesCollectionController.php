@@ -4,8 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Fee;
 use App\Models\Clas;
+use App\Models\Student;
 use App\Models\FeesCategory;
 use Illuminate\Http\Request;
+use App\Models\FeesCollection;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 
 class FeesCollectionController extends Controller
@@ -131,9 +134,71 @@ class FeesCollectionController extends Controller
 
 
     //fees collection
-    public function feesCollection(){
+    public function feesCollection(Request $request){
         $classes = Clas::all();
-        return view('admin.fees_collection.collection',compact('classes'));
+        $students = Student::where('clas_id',$request->class_id)->get();
+        return view('admin.fees_collection.collection',compact('classes','students'));
+    }//end method
+
+
+    //fees collection add
+    public function addCollection($id,$class_id,Request $request){
+        $student = Student::find($id);
+        $url = 'admin/fees/collection?'.'class_id='.$class_id;
+        $fees_collection = DB::table('fees_collections')->where('student_id',$student->id)->where('clas_id',$student->clas_id)->where('session_id',$student->session_id)->where('month',$request->month)->get();
+        return view('admin.fees_collection.collection_add',compact('student','url','fees_collection'));
+    }//end method
+
+
+    //fees collection insert
+    public function insertCollection($student_id,$class_id,$session_id,$total){
+       $url = 'admin/fees/collection/add/'.$student_id.'/'.$class_id;
+       $student = Student::find($student_id);
+       return view('admin.fees_collection.collection_insert',compact('student_id','class_id','session_id','total','url','student'));
+    }//end method
+
+
+    //store collection
+    public function storeCollection(Request $request){
+        $check = FeesCollection::where('student_id',$request->student_id)->where('clas_id',$request->clas_id)->where('session_id',$request->session_id)->where('month',$request->month)->latest()->first();
+
+        if($check){
+
+
+            if($request->given_amount>$check->due_amount){
+                return redirect()->back()->with('sms','The given amount is larger than the due amount.');
+            } else{
+                $fees_collection = new FeesCollection();
+                $fees_collection->student_id = $request->student_id;
+                $fees_collection->clas_id = $request->clas_id;
+                $fees_collection->session_id = $request->session_id;
+                $fees_collection->given_amount = $request->given_amount;
+                $fees_collection->due_amount = $check->due_amount-$request->given_amount;
+                $fees_collection->month = $request->month;
+                 $fees_collection->save();
+            }
+
+
+        } else{
+
+           if($request->given_amount>$request->total_fee){
+            return redirect()->back()->with('sms','The given amount is larger than the due amount.');
+           } else{
+            $fees_collection = new FeesCollection();
+            $fees_collection->student_id = $request->student_id;
+            $fees_collection->clas_id = $request->clas_id;
+            $fees_collection->session_id = $request->session_id;
+            $fees_collection->given_amount = $request->given_amount;
+            $fees_collection->due_amount = $request->total_fee-$request->given_amount;
+            $fees_collection->month = $request->month;
+             $fees_collection->save();
+           }
+
+        }
+
+        return redirect()->back()->with('message','Fees Collection Added Successfully');
+
+
     }//end method
 
 
