@@ -17,13 +17,14 @@
                 <div class="card">
                     <div class="card-header">
                         <h4>Edit Exam Routine.
-                            <a href="{{ Session::get('previousUrl') }}" class="btn btn-primary" style="float: right;">Back</a>
+                            <a href="{{ url($url) }}" class="btn btn-primary" style="float: right;">Back</a>
                         </h4>
                     </div>
 
                     <div class="card-body">
-                        <form action="{{ route('admin.exam-routine.update',$routine->id) }}" method="POST">
+                        <form action="{{ route('admin.exam-routine.update',['id'=>$routine->id]) }}" method="POST">
                             @csrf
+                            <input type="hidden" name="url" value="{{ $url }}">
                             <div class="row">
                                <div class="col-sm-6">
                                     <div class="form-group">

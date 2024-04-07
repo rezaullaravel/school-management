@@ -79,9 +79,6 @@
                                     </thead>
 
                                     <tbody>
-                                        @php
-                                            $sum = 0;
-                                        @endphp
                                        @foreach ($fees as $key => $fee)
                                            <tr class="text-center">
                                              <td>{{ $key+1 }}</td>
@@ -91,9 +88,6 @@
                                                 }}
                                              </td>
                                              <td>{{ number_format($fee->fees_amount,2) }} TK.</td>
-                                             @php
-                                                 $sum = $sum + $fee->fees_amount;
-                                             @endphp
                                              <td>
                                                 @if ($fee->status=='1')
                                                     <span class="text-success">Active</span>
@@ -119,13 +113,6 @@
                                              </td>
                                            </tr>
                                        @endforeach
-
-                                       <tr>
-                                         <td colspan="2"><span style="float: right;">Total</span></td>
-                                         <td style="text-align: center;">
-                                            <strong>{{ number_format($sum,2) }} TK. </strong>
-                                         </td>
-                                       </tr>
                                     </tbody>
                                 </table>
                                 @else

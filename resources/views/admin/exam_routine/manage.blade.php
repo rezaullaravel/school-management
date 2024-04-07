@@ -142,7 +142,12 @@
                                             <td>{{ $routine->room_no }}</td>
                                             <td>{{ date('d-m-Y',strtotime($routine->date)) }}</td>
                                             <td>
-                                                <a href="{{ route('admin.examination.routine.edit',$routine->id) }}" class="btn btn-info btn-sm" title="edit"><i class="fa fa-pen"></i></a>
+                                                <a href="{{ route('admin.examination.routine.edit',
+                                                ['id'=>$routine->id,
+                                                 'clas_id'=>Request::get('clas_id'),
+                                                 'exam_id'=>Request::get('exam_id'),
+                                                 'session_id'=>Request::get('session_id'),
+                                                ]) }}" class="btn btn-info btn-sm" title="edit"><i class="fa fa-pen"></i></a>
                                                 <a href="{{ route('admin.examination.routine.delete',$routine->id) }}" class="btn btn-danger btn-sm" onclick="confirmation(event)" title="delete"><i class="las la-trash"></i></a>
                                             </td>
                                         </tr>

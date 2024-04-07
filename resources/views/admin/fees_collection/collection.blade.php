@@ -81,7 +81,9 @@
                                              <td>{{ $row->roll }}</td>
                                              <td>{{ $row->registration }}</td>
                                              <td>
-                                                <a href="{{ route('admin.add.collection',['id'=>$row->id,'class_id'=>Request::get('class_id')]) }}" class="btn btn-info btn-sm" Title="Add Collection"><i class="las la-plus"></i></a>
+                                                <a href="{{ route('admin.add.collection',['id'=>$row->id,'class_id'=>Request::get('class_id')]) }}" class="btn btn-info btn-sm"><i class="las la-plus"></i>Add Collection</a>
+
+                                                <a href="{{ route('admin.total.fee',['id'=>$row->id,'class_id'=>Request::get('class_id')]) }}" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i>Total Fee</a>
                                              </td>
                                           </tr>
                                        @endforeach

@@ -165,7 +165,7 @@ Route::prefix('admin')->middleware(['admin'])->group(function () {
     Route::post('/e_xamination/routine/store',[ExamRoutineController::class,'store'])->name('admin.exam-routine.store');
     Route::get('/e_xamination/routine/view',[ExamRoutineController::class,'view'])->name('admin.exam-routine.view');
     Route::get('/e_xamination/routine/manage',[ExamRoutineController::class,'manage'])->name('admin.examination.routine.manage');
-    Route::get('/e_xamination/routine/edit/{id}',[ExamRoutineController::class,'edit'])->name('admin.examination.routine.edit');
+    Route::get('/e_xamination/routine/edit/{id}/{clas_id}/{exam_id}/{session_id}',[ExamRoutineController::class,'edit'])->name('admin.examination.routine.edit');
     Route::post('/e_xamination/routine/update/{id}',[ExamRoutineController::class,'update'])->name('admin.exam-routine.update');
     Route::get('/e_xamination/routine/delete/{id}',[ExamRoutineController::class,'delete'])->name('admin.examination.routine.delete');
     Route::post('/delete',[ExamRoutineController::class,'deleteAllSelected'])->name('delete.multiple');
@@ -200,6 +200,9 @@ Route::prefix('admin')->middleware(['admin'])->group(function () {
     Route::get('/fees/collection/add/{id}/{class_id}',[FeesCollectionController::class,'addCollection'])->name('admin.add.collection');
     Route::get('/fees/collection/insert/{student_id}/{class_id}/{session_id}/{total}',[FeesCollectionController::class,'insertCollection'])->name('admin.insert.collection');
     Route::post('/fees/collection/store',[FeesCollectionController::class,'storeCollection'])->name('admin.collection.store');
+
+
+    Route::get('/fees/total/{id}/{class_id}',[FeesCollectionController::class,'totalFee'])->name('admin.total.fee');
 
 
 

@@ -202,6 +202,15 @@ class FeesCollectionController extends Controller
     }//end method
 
 
+    //total fee
+    public function totalFee($id,$class_id){
+        $url = 'admin/fees/collection?'.'class_id='.$class_id;
+        $student = Student::find($id);
+        $total_fees = Fee::where('class_id', $student->clas_id)->where('status',1)->get();
+        return view('admin.fees_collection.total_fee',compact('url','total_fees','student'));
+    }
+
+
 
 
 

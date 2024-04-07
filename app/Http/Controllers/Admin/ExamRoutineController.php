@@ -114,7 +114,8 @@ class ExamRoutineController extends Controller
 
 
     //exam routine edit
-    public function edit($id,Request $request){
+    public function edit($id,$clas_id,$exam_id,$session_id){
+
         $routine = ExamRoutine::find($id);
 
         $classes = Clas::all();
@@ -122,12 +123,9 @@ class ExamRoutineController extends Controller
         $exams = Exam::all();
         $sessions = SessionModel::all();
 
-        // Capture the previous URL
-        $previousUrl = $request->session()->get('previousUrl', url()->previous());
+        $url = 'admin/e_xamination/routine/manage?'.'clas_id='.$clas_id.'&exam_id='.$exam_id.'&session_id='.$session_id;
 
-        // Store it in the session
-        $request->session()->put('previousUrl', $previousUrl);
-        return view('admin.exam_routine.edit',compact('routine','classes','subjects','exams','sessions'));
+        return view('admin.exam_routine.edit',compact('routine','classes','subjects','exams','sessions','url'));
     }//end method
 
 
@@ -153,6 +151,7 @@ class ExamRoutineController extends Controller
            'date.required' => 'The date  field is required.',
         ]);
 
+        $url = $request->url;
         $routine = ExamRoutine::find($id);
         $routine->clas_id = $request->clas_id;
 
@@ -172,7 +171,7 @@ class ExamRoutineController extends Controller
 
         $routine->save();
 
-        return redirect(Session::get('previousUrl'))->with('message','Exam routine updated successfully');
+        return redirect($url)->with('message','Exam routine updated successfully');
     }//end method
 
 
