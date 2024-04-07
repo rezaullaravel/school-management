@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NoticeController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\Admin\ExamController;
 use App\Http\Controllers\Admin\MarkController;
@@ -23,6 +24,7 @@ use App\Http\Controllers\Admin\ClassRoutineController;
 use App\Http\Controllers\Frontend\FrontHomeController;
 use App\Http\Controllers\Admin\StudentIdcardController;
 use App\Http\Controllers\Admin\FeesCollectionController;
+use App\Http\Controllers\Admin\PaymentHistoryController;
 use App\Http\Controllers\Admin\FrontendSettingController;
 use App\Http\Controllers\Student\StudentProfileController;
 use App\Http\Controllers\Teacher\TeacherProfileController;
@@ -200,10 +202,14 @@ Route::prefix('admin')->middleware(['admin'])->group(function () {
     Route::get('/fees/collection/add/{id}/{class_id}',[FeesCollectionController::class,'addCollection'])->name('admin.add.collection');
     Route::get('/fees/collection/insert/{student_id}/{class_id}/{session_id}/{total}',[FeesCollectionController::class,'insertCollection'])->name('admin.insert.collection');
     Route::post('/fees/collection/store',[FeesCollectionController::class,'storeCollection'])->name('admin.collection.store');
-
-
     Route::get('/fees/total/{id}/{class_id}',[FeesCollectionController::class,'totalFee'])->name('admin.total.fee');
 
+
+    //payment history
+    Route::get('payment/all',[PaymentHistoryController::class,'all'])->name('admin.all.payment');
+    Route::get('payment/status/complete/{id}',[PaymentHistoryController::class,'paymentStatusComplete'])->name('admin.payment.status.complete');
+    Route::get('payment/status/pending/{id}',[PaymentHistoryController::class,'paymentStatusPending'])->name('admin.payment.status.pending');
+    Route::get('payment/delete/{id}',[PaymentHistoryController::class,'paymentDelete'])->name('admin.delete.payment');
 
 
 
@@ -313,6 +319,11 @@ Route::middleware(['student'])->group(function () {
     Route::get('/student/passwrod/change',[StudentProfileController::class,'changePassword'])->name('student.passwrod.change');
     Route::post('/student/update/passwrod',[StudentProfileController::class,'updatePassword'])->name('student.update.password');
 
+
+    //payment
+    Route::get('student/payment/index',[PaymentController::class,'indexForStudent'])->name('student.payment');
+    Route::post('student/payment/store',[PaymentController::class,'storePaymentFromStudent'])->name('student.payment.store');
+
 });
 /*===================student all route end====================  */
 
@@ -333,6 +344,11 @@ Route::prefix('guardian')->middleware(['guardian'])->group(function () {
     Route::post('/update/profile/{id}', [GuardianProfileController::class, 'guardianProfileUpdate'])->name('guardian.profile.update');
     Route::get('/setting/change-password', [GuardianProfileController::class, 'guardianPasswordChange'])->name('guardian.setting.change-password');
     Route::post('/update/password', [GuardianProfileController::class, 'guardianPasswordUpdate'])->name('guardian.update.password');
+
+
+    //payment
+    Route::get('/payment',[PaymentController::class,'index'])->name('guardian.payment');
+    Route::post('/payment/store',[PaymentController::class,'storePayment'])->name('guardian.payment.store');
 
 });
 

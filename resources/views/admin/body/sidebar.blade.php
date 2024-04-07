@@ -99,9 +99,6 @@
             <nav class="mt-2">
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                     data-accordion="false">
-                    <!-- Add icons to the links using the .nav-icon class
-           with font-awesome or any other icon font library -->
-
 
                     <li class="nav-item {{ request()->is('admin/class*') ? 'menu-open' : '' }}">
                         <a href="#" class="nav-link {{ request()->is('admin/class*') ? 'active' : '' }}">
@@ -572,6 +569,29 @@
                     {{-- student fees collection end --}}
 
 
+                    {{-- payment --}}
+                    <li class="nav-item {{ request()->is('admin/payment*') ? 'menu-open' : '' }}">
+                        <a href="#" class="nav-link {{ request()->is('admin/payment*') ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-chart-pie"></i>
+                            <p>
+                                Payment
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('admin.all.payment') }}"
+                                    class="nav-link {{ request()->is('admin/payment/all') ? 'active' : '' }}"
+                                    >
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Payment History</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    {{-- payment end --}}
+
+
                     <li class="nav-item {{ request()->is('admin/frontend/setting*') ? 'menu-open' : '' }}">
                         <a href="#"
                             class="nav-link {{ request()->is('admin/frontend/setting*') ? 'active' : '' }}">
@@ -823,8 +843,6 @@
             <nav class="mt-2">
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                     data-accordion="false">
-                    <!-- Add icons to the links using the .nav-icon class
-           with font-awesome or any other icon font library -->
                     <li class="nav-item {{ request()->is('guardian/attendence*') ? 'menu-open' : '' }}">
                         <a href="#"
                             class="nav-link {{ request()->is('guardian/attendence*') ? 'active' : '' }}">
@@ -843,6 +861,29 @@
                                     >
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Student Attendence Report</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item {{ request()->is('guardian/payment*') ? 'menu-open' : '' }}">
+                        <a href="#"
+                            class="nav-link {{ request()->is('guardian/payment*') ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-chart-pie"></i>
+                            <p>
+                                Payment
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+
+
+                            <li class="nav-item">
+                                <a href="{{ route('guardian.payment') }}"
+                                    class="nav-link {{ request()->is('guardian/payment') ? 'active' : '' }}"
+                                    >
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Give Payment</p>
                                 </a>
                             </li>
                         </ul>
@@ -942,6 +983,30 @@
                                     >
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>View Exam Routine</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+
+                    <li class="nav-item {{ request()->is('student/payment*') ? 'menu-open' : '' }}">
+                        <a href="#"
+                            class="nav-link {{ request()->is('student/payment*') ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-chart-pie"></i>
+                            <p>
+                                Payment
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+
+
+                            <li class="nav-item">
+                                <a href="{{ route('student.payment') }}"
+                                    class="nav-link {{ request()->is('student/payment/index') ? 'active' : '' }}"
+                                    >
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Give Payment</p>
                                 </a>
                             </li>
                         </ul>
