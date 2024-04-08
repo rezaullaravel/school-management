@@ -371,7 +371,7 @@
                         </ul>
                     </li>
 
-                    <li class="nav-item {{ request()->is('admin/sub_category*') ? 'menu-open' : '' }}">
+                    {{-- <li class="nav-item {{ request()->is('admin/sub_category*') ? 'menu-open' : '' }}">
                         <a href="#"
                             class="nav-link {{ request()->is('admin/sub_category*') ? 'active' : '' }}">
                             <i class="nav-icon fas fa-chart-pie"></i>
@@ -390,7 +390,7 @@
                                 </a>
                             </li>
                         </ul>
-                    </li>
+                    </li> --}}
 
 
                     <li class="nav-item {{ request()->is('admin/slider*') ? 'menu-open' : '' }}">
@@ -491,8 +491,8 @@
 
 
                     {{-- student id card --}}
-                    <li class="nav-item {{ request()->is('admin/student-idcard/generate*') ? 'menu-open' : '' }}">
-                        <a href="#" class="nav-link {{ request()->is('admin/student-idcard/generate*') ? 'active' : '' }}">
+                    <li class="nav-item {{ request()->is('admin/_student-idcard/generate*') ? 'menu-open' : '' }}">
+                        <a href="#" class="nav-link {{ request()->is('admin/_student-idcard/generate*') ? 'active' : '' }}">
                             <i class="nav-icon fas fa-chart-pie"></i>
                             <p>
                                 Student Id Card
@@ -502,7 +502,7 @@
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
                                 <a href="{{ route('admin.student-idcard.generate') }}"
-                                    class="nav-link {{ request()->is('admin/student-idcard/generate') ? 'active' : '' }}"
+                                    class="nav-link {{ request()->is('admin/_student-idcard/generate') ? 'active' : '' }}"
                                     >
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Id Card Generate</p>

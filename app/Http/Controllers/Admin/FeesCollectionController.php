@@ -136,7 +136,7 @@ class FeesCollectionController extends Controller
     //fees collection
     public function feesCollection(Request $request){
         $classes = Clas::all();
-        $students = Student::where('clas_id',$request->class_id)->get();
+        $students = Student::where('clas_id',$request->class_id)->where('status',1)->get();
         return view('admin.fees_collection.collection',compact('classes','students'));
     }//end method
 

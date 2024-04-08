@@ -22,13 +22,13 @@ class MarkController extends Controller
         $class_id = $request->clas_id;
         $subject_id = $request->subject_id;
         if (!empty($request->clas_id && $request->section_id)) {
-            $students = Student::where('clas_id', $class_id)->where('section_id', $request->section_id)->where('session_id',$request->session_id)->get();
+            $students = Student::where('clas_id', $class_id)->where('section_id', $request->section_id)->where('session_id',$request->session_id)->where('status',1)->get();
 
             // $students->appends(['clas_id' => $class_id, 'section_id' => $request->section_id,'subject_id'=>$subject_id]);
         }
 
         if (empty($request->section_id)) {
-            $students = Student::where('clas_id', $class_id)->where('session_id',$request->session_id)->get();
+            $students = Student::where('clas_id', $class_id)->where('session_id',$request->session_id)->where('status',1)->get();
             // $students->appends(['clas_id' => $class_id,'subject_id'=>$subject_id]);
         }
 

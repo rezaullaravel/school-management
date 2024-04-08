@@ -11,8 +11,11 @@ use Illuminate\Support\Facades\Session;
 class PaymentController extends Controller
 {
     public function index(Request $request){
-        $student = Student::where('registration',$request->registration)->first();
-        return view('guardian.payment.index',compact('student'));
+        if(!empty($request->registration)){
+            $student = Student::where('registration',$request->registration)->first();
+            return view('guardian.payment.index',compact('student'));
+        }
+        return view('guardian.payment.index');
     }//end method
 
 

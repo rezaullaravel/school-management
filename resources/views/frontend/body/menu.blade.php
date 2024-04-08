@@ -29,6 +29,12 @@
                 <li class="nav-item">
                     <a class="nav-link text-white" href="contact.html">Contact Us</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="contact.html">Notice</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="contact.html">Headmaster's Message</a>
+                </li>
             </ul>
         </div>
     </nav>

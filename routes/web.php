@@ -174,7 +174,7 @@ Route::prefix('admin')->middleware(['admin'])->group(function () {
 
 
     //student id card
-    Route::get('/student-idcard/generate',[StudentIdcardController::class,'index'])->name('admin.student-idcard.generate');
+    Route::get('/_student-idcard/generate',[StudentIdcardController::class,'index'])->name('admin.student-idcard.generate');
     Route::post('/student-idcard/download',[StudentIdcardController::class,'downloadPdf'])->name('admin.student-idcard.download');
 
 
