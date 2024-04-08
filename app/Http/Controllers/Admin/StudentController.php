@@ -16,7 +16,7 @@ class StudentController extends Controller
 {
     //all student
     public function allStudent(){
-        $students = Student::orderBy('id','desc')->get();
+        $students = Student::orderBy('id','desc')->where('status',1)->get();
         return view('admin.student.student_all',compact('students'));
     }//end method
 

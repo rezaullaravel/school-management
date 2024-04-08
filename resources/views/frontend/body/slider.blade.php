@@ -1,24 +1,32 @@
-<div class="banner-area">
-    <div class="slider" id="slider1">
-        @php
-            $sliders = App\Models\Slider::all();
 
-        @endphp
+@php
+    $sliders = App\Models\Slider::all();
+    $active = true;
+@endphp
 
-        @foreach ($sliders as $slider)
-            <div
-                style="background:linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url({{ asset($slider->image) }}); background-position: center; background-size: cover;">
-            </div>
-        @endforeach
-
-        <a href="/" style="position: absolute; top:6px; height: 80px; width:80px; left:6px; z-index:999;"><img
-                src="{{ asset($setting->logo) }}" class="img-fluid rounded"></a>
-        <span class="titleBar">
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>{{ $setting->title }}
-                <br>
-                <p style="padding-left: 15rem;  margin-top: 10px; font-size:17px;">
-                    স্থাপিত : {{ $setting->date }}</p>
-            </span><br>
-        </span>
+<ul class="slider">
+    @foreach ($sliders as $slider)
+    <li class="{{ $active ? 'active':'' }}">
+        <div class="banner-w3ls-1" style="background-image: url('{{ asset($slider->image) }}');">
+        </div>
+    </li>
+    @php
+        $active = false;
+    @endphp
+    @endforeach
+</ul>
+{{-- <ul class="pager">
+    <li data-index="0" class="active"></li>
+    <li data-index="1"></li>
+    <li data-index="2"></li>
+    <li data-index="3"></li>
+    <li data-index="4"></li>
+</ul> --}}
+<div class="banner-text-posi-w3ls">
+    <div class="banner-text-whtree">
+        <h3 class="text-capitalize text-white p-4">Education is the backbone of a nation!</b>
+        </h3>
+        <p class="px-4 py-3 text-dark">Your bright future is our mission!</p>
+        {{-- <a href="about.html" class="button-agiles text-capitalize text-white mt-sm-5 mt-4">read more</a> --}}
     </div>
 </div>

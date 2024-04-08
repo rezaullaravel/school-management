@@ -1,73 +1,59 @@
 @extends('frontend.frontend_master')
 
 @section('title')
-    Student Result
+Student Result
 @endsection
 
-
 @section('content')
-<div class="main-body">
-	<div class="container">
-       <div class="row">
-         <div class="col-sm-12">
-            <div class="card">
-                @if (session('sms'))
-                    <div class="alert alert-danger">
-                        <h4 class="text-center">{{ Session::get('sms') }}</h4>
-                    </div>
-                @endif
-                <div class="card-header">
-                    <h4 class="text-center"><strong>Student Result</strong></h4>
-                </div>
-                <div class="card-body">
-                    <form action="{{ route('student.get-result') }}" method="GET">
+
+<div class="banner-agile">
+
+    @include('frontend.body.menu')
+    <div class="form-w3l py-5">
+		<div class="container py-xl-5 py-lg-3">
+			<h3 class="title text-capitalize font-weight-light text-dark text-center mb-5">Student
+				<span class="font-weight-bold">Result</span>
+			</h3>
+			<div class="register-form pt-md-4">
+				<form action="{{ route('student.get-result') }}" method="GET">
+					<div class="styled-input form-group">
+                        <input type="text" name="roll"  class="form-control" placeholder="Enter Student Roll..." required>
+					</div>
+
+					<div class="styled-input agile-styled-input-top form-group">
+                        <select name="clas_id"  class="category2" required>
+                            <option value="" selected disabled>Select Class</option>
+                            @foreach ($classes as $class)
+                                <option value="{{ $class->id }}"> {{ $class->class_name }}</option>
+                            @endforeach
+                        </select>
+					</div>
+
+                    <div class="styled-input agile-styled-input-top form-group">
+                        <select name="session_id"  class="form-control" required>
+                            <option value="" selected disabled>Select Session</option>
+                            @foreach ($sessions as $session)
+                                <option value="{{ $session->id }}"> {{ $session->session_year }} </option>
+                            @endforeach
+                        </select>
+					</div>
+
+                    <div class="styled-input agile-styled-input-top form-group">
+                        <select name="exam_id"  class="form-control" required>
+                            <option value="" selected disabled>Select Exam</option>
+                            @foreach ($exams as $exam)
+                                <option value="{{ $exam->id }}"> {{ $exam->exam_name }}</option>
+                            @endforeach
+                        </select>
+					</div>
+
+					<input type="submit" value="Submit">
+				</form>
+			</div>
+		</div>
+	</div>
+
+</div>{{-- banner agile --}}
 
 
-                        <div class="form-group">
-                            <label>Student Roll<span class="text-danger">*</span></label>
-                            <input type="text" name="roll"  class="form-control" placeholder="Enter Student Roll..." required>
-                        </div>
-
-                        <div class="form-group">
-                            <label>Class<span class="text-danger">*</span></label>
-                            <select name="clas_id"  class="form-control" required>
-                                <option value="" selected disabled>Select</option>
-                                @foreach ($classes as $class)
-                                    <option value="{{ $class->id }}"> {{ $class->class_name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label>Session<span class="text-danger">*</span></label>
-                            <select name="session_id"  class="form-control" required>
-                                <option value="" selected disabled>Select</option>
-                                @foreach ($sessions as $session)
-                                    <option value="{{ $session->id }}"> {{ $session->session_year }} </option>
-                                @endforeach
-                            </select>
-                        </div>
-
-
-                        <div class="form-group">
-                            <label>Examination Name<span class="text-danger">*</span></label>
-                            <select name="exam_id"  class="form-control" required>
-                                <option value="" selected disabled>Select</option>
-                                @foreach ($exams as $exam)
-                                    <option value="{{ $exam->id }}"> {{ $exam->exam_name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <input type="submit"  class="btn btn-success" value="Submit" style="float: right;">
-                        </div>
-                    </form>
-                </div>
-            </div>
-
-         </div>
-       </div>
-    </div>{{-- container --}}
-</div>
 @endsection

@@ -34,9 +34,9 @@ class SliderController extends Controller
         if ($request->file('image')) {
             $image = $request->file('image');
             $imageName = rand() . '.' . $image->getClientOriginalName();
-            //Image::make($image)->resize(960, 450)->save('upload/slider_images/' . $imageName);
-             $request->image->move(public_path('upload/slider_images'), $imageName);
-            $image_path = 'upload/slider_images/' . $imageName;
+            Image::make($image)->resize(1680,900)->save('upload/slider_images/' . $imageName);
+            //  $request->image->move(public_path('upload/slider_images'), $imageName);
+            $image_path = 'upload/slider_images/'.$imageName;
         }
 
         $slider = new Slider();
@@ -80,9 +80,9 @@ class SliderController extends Controller
             }
             $image = $request->file('image');
             $imageName = rand() . '.' . $image->getClientOriginalName();
-            //Image::make($image)->resize(960, 450)->save('upload/slider_images/' . $imageName);
-            $request->image->move(public_path('upload/slider_images'), $imageName);
-            $image_path = 'upload/slider_images/' . $imageName;
+            Image::make($image)->resize(1680,900)->save('upload/slider_images/' . $imageName);
+           // $request->image->move(public_path('upload/slider_images'), $imageName);
+            $image_path = 'upload/slider_images/'.$imageName;
             $slider->image = $image_path;
             $slider->save();
         }

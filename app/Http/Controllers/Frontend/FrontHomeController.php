@@ -76,7 +76,7 @@ class FrontHomeController extends Controller
             'present_address' => 'required',
             'permanent_address' => 'required',
         ], [
-            'clas_id.required' => 'The trade field is required.',
+            'clas_id.required' => 'The class field is required.',
             'session_id.required' => 'The session field is required.',
             'father_name.required' => 'The roll field is required',
             'mother_name.required' => 'The registration field is required',
@@ -120,7 +120,7 @@ class FrontHomeController extends Controller
         $student->birth_certificate = $request->birth_certificate ? $certificate_path : '';
         $student->save();
 
-        return redirect()->back()->with('sms', 'Your application has been submitted successfully');
+        return redirect()->back()->with('sms', 'Your application has been submitted successfully.');
     } //end method
 
     public function viewSection($subCategory)

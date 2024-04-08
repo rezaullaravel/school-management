@@ -36,6 +36,10 @@ class StudentAuthController extends Controller
 
     //student post login
     public function studentPostLogin(Request $request){
+        $request->validate([
+            'email' => 'required',
+            'password' => 'required'
+        ]);
         $student = Student::where('email',$request->email)->first();
         if($student && $student->status==1){
            if(password_verify($request->password,$student->password)){

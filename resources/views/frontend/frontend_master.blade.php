@@ -1,160 +1,127 @@
 <!DOCTYPE html>
-<html>
+<html lang="zxx">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title> @yield('title')</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link href="https://fonts.maateen.me/bangla/font.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="{{ asset('/') }}frontend/assets/css/style.css">
-    <link rel="stylesheet" type="text/css" href="{{ asset('/') }}frontend/assets/css/slider.css">
-    <!-- fontawsome css -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/brands.min.css">
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/fontawesome.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/solid.min.css">
+	<title>@yield('title')</title>
+	<!-- Meta tag Keywords -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="UTF-8" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+	<meta name="keywords" content="Edulearn Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design"
+	/>
+	<script>
+		addEventListener("load", function () {
+			setTimeout(hideURLbar, 0);
+		}, false);
 
-    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+		function hideURLbar() {
+			window.scrollTo(0, 1);
+		}
+	</script>
+	<!--// Meta tag Keywords -->
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.14.3/dist/css/uikit.min.css" />
+	<!-- Custom-Files -->
+	<!-- Bootstrap-Core-Css -->
+	<link rel="stylesheet" href="{{ asset('/') }}frontend/css/bootstrap.css">
+	<!-- Testimonials-Css -->
+	<link href="{{ asset('/') }}frontend/css/mislider.css" rel="stylesheet" type="text/css" />
+	<link href="{{ asset('/') }}frontend/css/mislider-custom.css" rel="stylesheet" type="text/css" />
+	<!-- Style-Css -->
+	<link rel="stylesheet" href="{{ asset('/') }}frontend/css/style.css" type="text/css" media="all" />
+	<!-- Font-Awesome-Icons-Css -->
+	<link rel="stylesheet" href="{{ asset('/') }}frontend/css/fontawesome-all.css">
+	<!-- //Custom-Files -->
 
-    <link
-        href="https://fonts.googleapis.com/css2?family=Kdam+Thmor+Pro&family=Oswald:wght@200;300;400;500;600;700&family=Poppins:ital,wght@0,600;0,700;0,800;0,900;1,600;1,700;1,800;1,900&family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap"
-        rel="stylesheet">
+	<!-- Web-Fonts -->
+	<link href="//fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700,700i&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese"
+	 rel="stylesheet">
+	<link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+	<!-- //Web-Fonts -->
 
-    <!-- pagination css -->
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> -->
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <link rel="stylesheet" href="{{ asset('/') }}frontend/assets/css/pagination.css" />
-    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v10.0"
-        nonce="IwRZzl2z"></script>
+    <!--line awesome font cdn-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/line-awesome/1.3.0/line-awesome/css/line-awesome.min.css" />
+    <!---line awesome font cdn end->
+
 </head>
 
 <body>
-
-    <div class="section">
-        <div class="container">
-            <div class="wrapper">
-
-                <div class="header-area">
-                    @include('frontend.body.top_header')
+	<!-- header -->
+	@include('frontend.body.header')
+	<!-- //header -->
 
 
 
+	@yield('content')
 
-                    @include('frontend.body.menu')
-                </div>
-
-
-
-                {{-- main content  --}}
-                @yield('content')
-                {{-- main content end --}}
+	<!-- footer -->
+	@include('frontend.body.footer')
+	<!-- //footer -->
 
 
+	<!-- Js files -->
+	<!-- JavaScript -->
+	<script src="{{ asset('/') }}frontend/js/jquery-2.2.3.min.js"></script>
+    {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> --}}
+	<!-- Default-JavaScript-File -->
+	<script src="{{ asset('/') }}frontend/js/bootstrap.js"></script>
+	<!-- Necessary-JavaScript-File-For-Bootstrap -->
 
-                {{-- footer start --}}
-                @include('frontend.body.footer')
+	<!-- banner slider -->
+	<script src="{{ asset('/') }}frontend/js/slider.js"></script>
+	<!-- //banner slider -->
 
+	<!-- testimonial-plugin -->
+	<script src="{{ asset('/') }}frontend/js/mislider.js"></script>
+	<script>
+		jQuery(function ($) {
+			var slider = $('.mis-stage').miSlider({
+				//  The height of the stage in px. Options: false or positive integer. false = height is calculated using maximum slide heights. Default: false
+				stageHeight: 320,
+				//  Number of slides visible at one time. Options: false or positive integer. false = Fit as many as possible.  Default: 1
+				slidesOnStage: false,
+				//  The location of the current slide on the stage. Options: 'left', 'right', 'center'. Defualt: 'left'
+				slidePosition: 'center',
+				//  The slide to start on. Options: 'beg', 'mid', 'end' or slide number starting at 1 - '1','2','3', etc. Defualt: 'beg'
+				slideStart: 'mid',
+				//  The relative percentage scaling factor of the current slide - other slides are scaled down. Options: positive number 100 or higher. 100 = No scaling. Defualt: 100
+				slideScaling: 150,
+				//  The vertical offset of the slide center as a percentage of slide height. Options:  positive or negative number. Neg value = up. Pos value = down. 0 = No offset. Default: 0
+				offsetV: -5,
+				//  Center slide contents vertically - Boolean. Default: false
+				centerV: true,
+				//  Opacity of the prev and next button navigation when not transitioning. Options: Number between 0 and 1. 0 (transparent) - 1 (opaque). Default: .5
+				navButtonsOpacity: 1,
+			});
+		});
+	</script>
+	<!-- //testimonial-plugin -->
 
+	<!-- numscroller-js-file -->
+	<script src="{{ asset('/') }}frontend/js/numscroller-1.0.js"></script>
+	<!-- //numscroller-js-file -->
 
+	<!-- smooth scrolling -->
+	<script src="{{ asset('/') }}frontend/js/SmoothScroll.min.js"></script>
+	<!-- //smooth scrolling -->
 
+	<!-- move-top -->
+	<script src="{{ asset('/') }}frontend/js/move-top.js"></script>
+	<!-- easing -->
+	<script src="{{ asset('/') }}frontend/js/easing.js"></script>
+	<!--  necessary snippets for few javascript files -->
+	<script src="{{ asset('/') }}frontend/js/edulearn.js"></script>
 
-                <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-                    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
-                </script>
-                <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
-                    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
-                </script>
-                <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
-                    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
-                </script>
+	<!-- //Js files -->
 
-                <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-                <script type="text/javascript" src="{{ asset('/') }}frontend/assets/js/slider.js"></script>
-                <script type="text/javascript" src="{{ asset('/') }}frontend/assets/js/pagination.js"></script>
-
-                <!-- fontawssome js -->
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/brands.min.js"></script>
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/fontawesome.min.js"></script>
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/regular.min.js"></script>
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/solid.min.js"></script>
-
-                <script type="text/javascript" src="{{ asset('/') }}frontend/assets/js/navbar.js"></script>
-                <script type="text/javascript" src="{{ asset('/') }}frontend/assets/js/bootstrapNavbar.js"></script>
-
-
-                <!-- pagination js -->
-                <!-- <script src="https://code.jquery.com/jquery-3.1.1.min.js"
-                    integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script> -->
-                <!-- <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
-                    integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script> -->
-                <script src="{{ asset('/') }}frontend/assets/js/pagination1.js"></script>
-
-
-
-                <script type="text/javascript" src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
-
-                <script src="https://cdn.jsdelivr.net/npm/uikit@3.14.3/dist/js/uikit.min.js"></script>
-                <script src="https://cdn.jsdelivr.net/npm/uikit@3.14.3/dist/js/uikit-icons.min.js"></script>
-
-                <script type="text/javascript">
-                    $(document).ready(function() {
-                        $('#myTable').DataTable();
-                    });
-                </script>
-
-                <!-- <script type="text/javascript" src="https://skillbasedit.com/demoschool/public/frontend/js/jquery.nivo.slider.js">
-                </script> -->
-
-                <script type="text/javascript">
-                    $(document).ready(function() {
-
-                        $("#slider1").sliderResponsive({
-                            // Using default everything
-                            // slidePause: 5000,
-                            // fadeSpeed: 800,
-                            // autoPlay: "on",
-                            // showArrows: "off",
-                            // hideDots: "off",
-                            // hoverZoom: "on",
-                            // titleBarTop: "off"
-                        });
-
-                        $("#slider2").sliderResponsive({
-                            fadeSpeed: 300,
-                            autoPlay: "off",
-                            showArrows: "on",
-                            hideDots: "on"
-                        });
-
-                        $("#slider3").sliderResponsive({
-                            hoverZoom: "off",
-                            hideDots: "on"
-                        });
-
-                    });
-                </script>
-
-                <!--  <script type="text/javascript">
-                    $(".dropdown-menu").on('mouseover', function(e) {
-                        $('.nav-link.dropdown-toggle').addClass("active");
-                    });
-                </script>
-
-    <script type="text/javascript">
-        $(".dropdown-menu").on('mouseout', function(e) {
-            $('.nav-link.dropdown-toggle').removeClass("active");
+    {{-- ajax setup --}}
+    <script>
+        $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
         });
-    </script> -->
-
-
+    </script>
 
 </body>
 
 </html>
-{{-- footer end --}}

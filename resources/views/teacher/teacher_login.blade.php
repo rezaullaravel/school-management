@@ -9,6 +9,8 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="{{ asset('') }}backend/plugins/fontawesome-free/css/all.min.css">
+  <!-- Line awesome cdn-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/line-awesome/1.3.0/line-awesome/css/line-awesome.min.css"/>
   <!-- icheck bootstrap -->
   <link rel="stylesheet" href="{{ asset('') }}backend/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
   <!-- Theme style -->
@@ -17,7 +19,8 @@
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <p><b>Teacher</b> Panel</p>
+    <a href="{{ url('/') }}" class="btn btn-primary" title="Back To Site"><i class="las la-angle-double-left"></i></a>
+    <p style="display: inline;"><b>Teacher</b> Panel</p>
   </div>
   <!-- /.login-logo -->
   @if (session('message'))
