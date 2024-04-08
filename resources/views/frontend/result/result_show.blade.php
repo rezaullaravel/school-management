@@ -173,11 +173,14 @@ Student Result View
                       </div>
                     </div>{{-- main row --}}
 
+                    @if (count($marks)>0)
                     <div class="row mt-3">
-                     <div class="col-sm-12">
-                         <button class="btn btn-primary" onclick="downloadResult()" id="downloadBtn" style="float: right;">Download && Print</button>
-                     </div>
-                 </div>{{-- row --}}
+                        <div class="col-sm-12">
+                            <button class="btn btn-primary" onclick="downloadResult()" id="downloadBtn" style="float: right;">Download && Print</button>
+                        </div>
+                    </div>{{-- row --}}
+                    @endif
+
                  </div>{{-- container --}}
 			</div>
 		</div>
