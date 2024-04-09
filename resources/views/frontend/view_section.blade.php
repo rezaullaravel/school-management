@@ -1,22 +1,42 @@
 @extends('frontend.frontend_master')
 
 @section('title')
-    {{ $data->title }}
+{{ $title }}
 @endsection
+
+<style>
+    .formStyle{
+        background: #ffe0f3  !important;
+    }
+    figure{
+        text-align: center;
+    }
+</style>
+
 @section('content')
-    @include('frontend.body.slider')
-    <div class="main-body">
-        <div class="row">
-            <div class="col-lg-9 col-md-9 col-12">
-                @include('frontend.body.left_view')
-            </div>
 
-            <!-- left body -->
-            <div class="col-lg-3 col-md-3 col-12">
-                @include('frontend.body.right_sidebar')
-            </div>
-            <!-- left body -->
+<div class="banner-agile">
 
-        </div>
-    </div>
+    @include('frontend.body.menu')
+    <div class="form-w3l py-5">
+		<div class="py-xl-5 py-lg-3">
+
+			<div class="register-form pt-md-4">
+				<div class="container" style="min-height: 405px !important">
+                    <div class="row">
+                      <div class="col-sm-12">
+                         <div class="card">
+                            <div class="card-body">
+                                <p>{!! $data->description !!}</p>
+                            </div>
+                         </div>
+                      </div>
+                    </div>{{-- main row --}}
+                 </div>{{-- container --}}
+			</div>
+		</div>
+	</div>
+
+</div>{{-- banner agile --}}
+
 @endsection

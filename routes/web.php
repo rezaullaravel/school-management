@@ -155,6 +155,9 @@ Route::prefix('admin')->middleware(['admin'])->group(function () {
     Route::get('/notice/edit/{id}', [NoticeController::class, 'editNotice'])->name('admin.edit.notice');
     Route::post('/notice/update', [NoticeController::class, 'updateNotice'])->name('admin.update.notice');
 
+    Route::post('/ckeditor/upload', [NoticeController::class, 'uploadCkeditor'])->name('ckeditor.upload');
+
+
     //class routine add page
     Route::get('/Class/routine',[ClassRoutineController::class,'list'])->name('admin.class.routine');
     Route::post('/Class/routine-insert',[ClassRoutineController::class,'insertclassRoutine'])->name('admin.class.routine.insert');
@@ -359,19 +362,29 @@ Route::prefix('guardian')->middleware(['guardian'])->group(function () {
 Route::get('/', [FrontHomeController::class, 'index']);
 
 //result
-Route::get('/student/result', [FrontHomeController::class, 'result'])->name('student.result');
+Route::get('/page/student/result', [FrontHomeController::class, 'result'])->name('student.result');
 Route::get('/student-result/show', [FrontHomeController::class, 'getStudentResult'])->name('student.get-result');
 
 //admission
-Route::get('/student/admission', [FrontHomeController::class, 'studentAdmissionForm'])->name('student.admission');
+Route::get('/page/student/admission', [FrontHomeController::class, 'studentAdmissionForm'])->name('student.admission');
 Route::post('/store/admission/info', [FrontHomeController::class, 'storeAdmissionInfo'])->name('store.admission.info');
 
+
+//teachers
+Route::get('/page/teachers', [FrontHomeController::class, 'allTeachers'])->name('frontend.teachers');
+Route::get('/page/students', [FrontHomeController::class, 'allStudents'])->name('frontend.students');
+
 //view section
-Route::get('/view/{subCategory}', [FrontHomeController::class, 'viewSection'])->name('view.section');
-Route::get('/view_notice/{notice}', [FrontHomeController::class, 'viewNotice'])->name('view.notice');
-Route::get('/view_description/{description}', [FrontHomeController::class, 'principalDescription'])->name('view.principalDescription');
-Route::get('/all-login', function () {
-    return view('frontend.login.login');
-})->name('frontend.login');
+// Route::get('/view/{subCategory}', [FrontHomeController::class, 'viewSection'])->name('view.section');
+ Route::get('/view_notice', [FrontHomeController::class, 'viewNotice'])->name('view.notice');
+ Route::get('/view_description', [FrontHomeController::class, 'principalDescription'])->name('view.principalDescription');
+
+
+ //about us
+ Route::get('/about/us', [FrontHomeController::class, 'aboutUs'])->name('about.us');
+
+ //contact us
+ Route::get('/contact/us', [FrontHomeController::class, 'contactUs'])->name('contact.us');
+
 
 /*===========================Frontend all route end ================================ */

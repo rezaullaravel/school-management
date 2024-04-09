@@ -2,18 +2,19 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use App\Http\Controllers\Controller;
+use Image;
 use App\Models\Clas;
 use App\Models\Exam;
 use App\Models\Mark;
 use App\Models\Notice;
-use App\Models\Principal;
 use App\Models\Section;
-use App\Models\SessionModel;
 use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\Principal;
 use App\Models\subCategory;
+use App\Models\SessionModel;
 use Illuminate\Http\Request;
-use Image;
+use App\Http\Controllers\Controller;
 
 class FrontHomeController extends Controller
 {
@@ -133,24 +134,55 @@ class FrontHomeController extends Controller
         return redirect()->back()->with('message', 'No data found');
     }
 
-    public function viewNotice($notice)
+    public function viewNotice()
     {
-        $data = Notice::where('title', $notice)->first();
-        $subCategories = SubCategory::all()->groupBy('category');
+        $data = Notice::latest()->first();
+        $title = 'View notice';
+        // $subCategories = SubCategory::all()->groupBy('category');
         if ($data) {
-            return view('frontend.view_section', compact('data', 'subCategories'));
+            return view('frontend.view_section', compact('data','title'));
         }
         return redirect()->back()->with('message', 'No data found');
 
     }
 
-    public function principalDescription($id)
+    public function principalDescription()
     {
-        $data = Principal::find($id);
+        $title = 'Headmaster message';
+        $data = Principal::latest()->orderBy('id','desc')->first();
         if ($data) {
-            return view('frontend.view_section', compact('data'));
+            return view('frontend.view_section', compact('data','title'));
         }
         return redirect()->back()->with('message', 'No data found');
     }
+
+
+    //all teachers
+    public function allTeachers(){
+        $data['getRecords'] = Teacher::getRecord();
+        return view('frontend.teacher.all',$data);
+    }//end method
+
+
+    //all students
+    public function allStudents(Request $request){
+        $classes = Clas::all();
+        $sessions = SessionModel::all();
+        $students = Student::where('clas_id',$request->clas_id)->where('session_id',$request->session_id)->get();
+
+        return view('frontend.student.all',compact('classes','sessions','students'));
+    }//end method
+
+
+    //about us
+    public function aboutUs(){
+        return view('frontend.about.about_us');
+    }//end method
+
+
+    //contact us
+    public function contactUs(){
+        return view('frontend.contact.contact_us');
+    }//end method
 
 } //end main

@@ -26,18 +26,18 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @if ($principal)
+                                    @foreach($principal as $value)
                                         <tr class="text-center">
-                                            <td>{{ $principal->name }}</td>
+                                            <td>{{ $value->name }}</td>
                                             <td>
                                                 {{-- <a href="{{ route('admin.edit.session', $principal->id) }}"
                                                 class="btn btn-info btn-sm" title="Edit"><i class="las la-pen"></i></a> --}}
-                                                <a href="{{ route('admin.delete.principal', $principal->id) }}"
+                                                <a href="{{ route('admin.delete.principal', $value->id) }}"
                                                     class="btn btn-danger btn-sm" onclick="confirmation(event)"
                                                     title="Delete"><i class="las la-trash"></i></a>
                                             </td>
                                         </tr>
-                                    @endif
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

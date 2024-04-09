@@ -53,22 +53,35 @@
                             </div>
                         </div>
                         <div class="col-sm-4 col-6 top-login-butt text-right mt-sm-2">
-                            <a href="" class="button-head-mow3 text-white" data-toggle="modal" data-target="#loginModal" id="loginBtn">Login</a>
+                            @if (Session::get('adminId'))
+                            <a href="" class="button-head-mow3 text-white" style="display: none;" data-toggle="modal" data-target="#loginModal" id="loginBtn">Login</a>
+
+                            @elseif(Session::get('teacherId'))
+                            <a href="" class="button-head-mow3 text-white" style="display: none;" data-toggle="modal" data-target="#loginModal" id="loginBtn">Login</a>
+
+                            @elseif(Session::get('studentId'))
+                            <a href="" class="button-head-mow3 text-white" style="display: none;" data-toggle="modal" data-target="#loginModal" id="loginBtn">Login</a>
+
+                            @elseif(Session::get('guardianId'))
+                            <a href="" class="button-head-mow3 text-white" style="display: none;" data-toggle="modal" data-target="#loginModal" id="loginBtn">Login</a>
+                            @else
+                            <a href="" class="button-head-mow3 text-white"  data-toggle="modal" data-target="#loginModal" id="loginBtn">Login</a>
+                            @endif
 
                             @if (Session::get('adminId'))
-                            <a href="{{ url('admin/dashboard') }}" class="button-head-mow3 text-white" title="Go To Dashboard"><i class="las la-angle-double-right"></i></a>
+                            <a href="{{ url('admin/dashboard') }}" class="button-head-mow3 text-white" title="Go To Dashboard">Dashboard<i class="las la-angle-double-right"></i></a>
                             @endif
 
                             @if (Session::get('teacherId'))
-                            <a href="{{ url('teacher/dashboard') }}" class="button-head-mow3 text-white" title="Go To Dashboard"><i class="las la-angle-double-right"></i></a>
+                            <a href="{{ url('teacher/dashboard') }}" class="button-head-mow3 text-white" title="Go To Dashboard">Dashboard<i class="las la-angle-double-right"></i></a>
                             @endif
 
                             @if (Session::get('studentId'))
-                            <a href="{{ url('student/dashboard') }}" class="button-head-mow3 text-white" title="Go To Dashboard"><i class="las la-angle-double-right"></i></a>
+                            <a href="{{ url('student/dashboard') }}" class="button-head-mow3 text-white" title="Go To Dashboard">Dashboard<i class="las la-angle-double-right"></i></a>
                             @endif
 
                             @if (Session::get('guardianId'))
-                            <a href="{{ url('guardian/dashboard') }}" class="button-head-mow3 text-white" title="Go To Dashboard"><i class="las la-angle-double-right"></i></a>
+                            <a href="{{ url('guardian/dashboard') }}" class="button-head-mow3 text-white" title="Go To Dashboard">Dashboard<i class="las la-angle-double-right"></i></a>
                             @endif
 
                         </div>

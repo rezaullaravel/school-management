@@ -61,7 +61,7 @@ class FrontendSettingController extends Controller
     //principalSetting
     public function principalSetting()
     {
-        $principal = Principal::get()->first();
+        $principal = Principal::orderBy('id','desc')->get();
         return view('admin.setting.principal', compact('principal'));
     }
 

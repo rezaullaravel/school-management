@@ -31,7 +31,7 @@
 
                                 <div class="form-group">
                                     <label>Notice Description<span class="text-danger">*</span></label>
-                                    <textarea name="description" class="ckeditor" id="" cols="30" rows="10"></textarea>
+                                    <textarea name="description"  id="editor" cols="30" rows="10"></textarea>
                                     @error('description')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
@@ -47,5 +47,20 @@
             </div>
         </div>
     </section>
-    <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+    <script src="{{ asset('ckeditor5/ckeditor.js') }}"></script>
+    <script>
+        ClassicEditor
+                .create( document.querySelector( '#editor' ),{
+                    ckfinder:{
+                        uploadUrl:'{{ route('ckeditor.upload').'?_token='.csrf_token() }}'
+                    }
+                } )
+                .then( editor => {
+                        console.log( editor );
+                } )
+                .catch( error => {
+                        console.error( error );
+                } );
+</script>
+
 @endsection

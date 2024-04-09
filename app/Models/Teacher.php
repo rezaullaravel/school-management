@@ -12,4 +12,8 @@ class Teacher extends Model
     public function designation(){
         return $this->belongsTo(Designation::class,'designation_id')->withDefault();
     }
+
+    static function getRecord(){
+        return self::all();
+    }
 }
