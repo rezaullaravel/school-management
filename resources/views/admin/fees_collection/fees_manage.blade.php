@@ -73,7 +73,6 @@
                                         <th>Sl</th>
                                         <th>Fee Category</th>
                                         <th>Fee Amount</th>
-                                        <th>Status</th>
                                         <th>Action</th>
                                        </tr>
                                     </thead>
@@ -88,27 +87,8 @@
                                                 }}
                                              </td>
                                              <td>{{ number_format($fee->fees_amount,2) }} TK.</td>
+
                                              <td>
-                                                @if ($fee->status=='1')
-                                                    <span class="text-success">Active</span>
-                                                @endif
-
-                                                @if ($fee->status=='0')
-                                                    <span class="text-danger">Deactive</span>
-                                                @endif
-                                             </td>
-                                             <td>
-
-                                                @if ($fee->status=='1')
-                                                <a href="{{ route('admin.fees.deactive',$fee->id) }}"  class="btn btn-info btn-sm" title="Edit">
-                                                    <i class="las la-arrow-circle-down"></i>De Active
-                                                </a>
-                                                @endif
-
-                                                @if ($fee->status=='0')
-                                                <a href="{{ route('admin.fees.active',$fee->id) }}"   class="btn btn-primary btn-sm" title="Edit"><i class="las la-arrow-circle-up"></i>Active</a>
-                                                @endif
-
                                                 <a href="{{ route('admin.fees.delete',$fee->id) }}" class="btn btn-danger btn-sm" onclick="confirmation(event)" title="Delete"><i class="las la-trash"></i>Delete</a>
                                              </td>
                                            </tr>
