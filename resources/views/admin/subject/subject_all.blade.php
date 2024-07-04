@@ -22,6 +22,8 @@
                                 <thead>
                                     <tr class="text-center">
                                         <th>Sl</th>
+                                        <th>Class</th>
+                                        <th>Section</th>
                                         <th>Subject Name</th>
                                         <th>Action</th>
                                     </tr>
@@ -30,6 +32,8 @@
                                     @foreach ($subjects as $key=>$row )
                                         <tr class="text-center">
                                             <td>{{ $key+1 }}</td>
+                                            <td>{{ $row->clas->class_name }}</td>
+                                            <td>{{ $row->section->section_name }}</td>
                                             <td>{{ $row->subject }}</td>
                                             <td>
                                                 <a href="{{ route('admin.edit.subject',$row->id) }}" class="btn btn-info btn-sm" title="Edit"><i class="las la-pen"></i></a>

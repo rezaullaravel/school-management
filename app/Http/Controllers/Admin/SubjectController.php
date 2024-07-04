@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Clas;
+use App\Models\Section;
 use App\Models\Subject;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -24,7 +26,8 @@ class SubjectController extends Controller
 
     //add subject
     public function addSubject(){
-        return view('admin.subject.subject_add');
+        $classes = Clas::all();
+        return view('admin.subject.subject_add',compact('classes'));
     }//end method
 
 
@@ -36,16 +39,18 @@ class SubjectController extends Controller
 
     //store subject
     public function storeSubject(Request $request){
-        $request->validate([
-            'subject'=>'required|unique:subjects'
-        ],[
-            'subject.required'=>'The subject name is required.',
-        ]);
+      
+        foreach($request->subject as $sub){
+            $subject = new Subject();
+            $subject->clas_id = $request->clas_id;
+            $subject->section_id = $request->section_id;
+            $subject->subject = $sub;
+            $subject->save();
+        }
 
-        $subject = new Subject();
-        $subject->subject = $request->subject;
-        $subject->save();
         return redirect()->route('admin.all.subject')->with('message','Subject Added Successfully');
+
+
     }//end method
 
 

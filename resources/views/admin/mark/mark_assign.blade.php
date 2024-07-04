@@ -25,7 +25,7 @@
                                         <select name="clas_id" id="class_id"   class="form-control" required>
                                             <option value="" selected disabled>Select</option>
                                             @foreach ($classes as $class)
-                                                <option value="{{ $class->id }}" {{ $class->id == Request::get('clas_id') ? 'selected':'' }}>{{ $class->class_name }}</option>
+                                                <option value="{{ $class->id }}">{{ $class->class_name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -35,32 +35,25 @@
                                     <div class="form-group">
                                         <label for="">Section</label>
                                         <select name="section_id" id="section_id"  class="form-control">
-                                            <option value="" selected disabled>Select</option>
-                                            @foreach ($sections as $section)
-                                                <option value="{{ $section->id }}" {{ Request::get('section_id')== $section->id ? 'selected':'' }}>
-                                                    @if (!empty(Request::get('clas_id')))
-                                                        {{ $section->section_name }}
-                                                    @endif
-                                                </option>
-                                            @endforeach
+                                            <option value=""  disabled>Select</option>
+
                                         </select>
                                     </div>
                                 </div>
 
                                 <div class="col-sm-3">
+
                                     <div class="form-group">
                                         <label for="">Subject</label>
                                         <select name="subject_id" id="subject_id" class="form-control" required>
-                                            <option value="">Select Subject</option>
 
-                                                @foreach ($subjects as $subject)
-                                                    <option value="{{ $subject->id }}" {{ Request::get('subject_id') == $subject->id ? 'selected':'' }}>
-                                                        {{ $subject->subject }}
-                                                    </option>
-                                                @endforeach
+
+                                            <option value="">Select Subject</option>
 
                                         </select>
                                     </div>
+
+
                                 </div>
 
                                  <div class="col-sm-3">
@@ -106,6 +99,55 @@
 
 
           @if (!empty($class_id && $subject_id))
+
+          <div class="row">
+            <div class="col-sm-10 offset-sm-1">
+                <div class="row">
+                    <div class="col-sm-4">
+                        @php
+                            $class = App\Models\Clas::where('id',Request::get('clas_id'))->first();
+                        @endphp
+                        Class: <strong>{{ $class->class_name }}</strong>
+                    </div>
+                    <div class="col-sm-4">
+                        @php
+                        $section = App\Models\Section::where('id',Request::get('section_id'))->first();
+                        @endphp
+                        Section: <strong>{{ $section?->section_name  }}</strong>
+                    </div>
+                    <div class="col-sm-4">
+                        @php
+                        $session = App\Models\SessionModel::where('id',Request::get('session_id'))->first();
+                        @endphp
+                        Session: <strong>{{  $session->session_year }}</strong>
+                    </div>
+                </div>
+            </div>
+          </div>
+
+          <div class="row mt-3">
+            <div class="col-sm-10 offset-sm-1">
+                <div class="row">
+                    <div class="col-sm-4">
+                        @php
+                            $exam = App\Models\Exam::where('id',Request::get('exam_id'))->first();
+                        @endphp
+                        Exam: <strong>{{ $exam->exam_name }}</strong>
+                    </div>
+                    <div class="col-sm-4">
+                        @php
+                        $subject = App\Models\Subject::where('id',Request::get('subject_id'))->first();
+                        @endphp
+                        Subject: <strong>{{ $subject->subject  }}</strong>
+                    </div>
+                    <div class="col-sm-4">
+
+                    </div>
+                </div>
+            </div>
+          </div>
+
+
           <div class="row">
             <div class="col-sm-10 offset-sm-1">
                 <div class="card">
@@ -161,7 +203,7 @@
                     </div>
                 </div>
             </div>
-        </div>{{-- row --}}
+          </div>{{-- row --}}
           @endif
 
 
@@ -172,58 +214,92 @@
 
 
 {{-- js for section and subject auto select --}}
-<script>
+ <script type="text/javascript">
     $(document).ready(function() {
-        $('select[name="clas_id"]').on('change',function(){
-            var class_id=$(this).val();
-            if(class_id){
+
+        // Fetch sections when class is selected
+        $('#class_id').on('change', function() {
+            var class_id = $(this).val();
+            if (class_id) {
                 $.ajax({
-                    url:"{{ url('/admin/class/section/ajax') }}/"+class_id,
-                    type:"GET",
-                    dataType:"json",
-                    success:function(data){
-                        var d=$('select[name="section_id"]').empty();
-                        $.each(data,function(key,value){
-                            $('select[name="section_id"]').append(
-                                '<option value="'+value.id+'">'+
-                                value.section_name+'</option>');
+                    url: "{{ url('/admin/class/section/ajax') }}/" + class_id,
+                    type: "GET",
+                    dataType: "json",
+                    success: function(data) {
+                        //console.log("Sections data received:", data);
+                        $('#section_id').empty();
+                        $('#section_id').append('<option value="">Select Section</option>');
+                        $.each(data, function(key, value) {
+                            $('#section_id').append('<option value="' + value.id + '">' + value.section_name + '</option>');
                         });
+
+                        // Trigger the change event to fetch subjects for the first section automatically
+                        var firstSectionId = data.length > 0 ? data[0].id : null;
+                        $('#section_id').val(firstSectionId).trigger('change');
                     },
+                    error: function(xhr, status, error) {
+                        console.error("Error fetching sections:", error);
+                    }
                 });
-            }else{
-                alert('danger');
+            } else {
+                alert('Please select a class.');
             }
         });
 
-        //subject auto select
-//         $('select[name="section_id"]').on('change',function() {
-//     var class_id = $('#class_id').val();
-//     var section_id = $(this).val();
-//     if(class_id && section_id) {
-//         $.ajax({
-//             type: "GET",
-//             url: "/admin/getSubjects/"+class_id+"/"+section_id,
-//             success: function(res) {
+        // Fetch subjects when section is selected
+        $('#section_id').on('change', function() {
+            var class_id = $('#class_id').val();
+            var section_id = $('#section_id').val();
+            fetchSubjects(class_id, section_id);
+        });
 
-//                 var data = JSON.parse(res);
-//                 //console.log(typeof data);
+        // Function to fetch subjects based on class and section
+        function fetchSubjects(class_id, section_id = null) {
+            if (class_id) {
+                var url = section_id ? "{{ url('/admin/getSubjects') }}/" + class_id + "/" + section_id : "{{ url('/admin/getSubjects') }}/" + class_id;
+                $.ajax({
+                    url: url,
+                    type: "GET",
+                    dataType: "json",
+                    success: function(data) {
+                        console.log("Subjects data received:", data);
+                        $('#subject_id').empty();
+                        $('#subject_id').append('<option value="">Select Subject</option>');
+                        $.each(data, function(key, value) {
 
-//                 $('#subject_id').empty();
-//                 $.each(data, function(index, subject) {
-//                     $('#subject_id').append('<option value="' + subject.id + '">' + subject.subject + '</option>');
-//                 });
+                             $('#subject_id').append('<option value="' + value.id + '">' + value.subject + '</option>');
+                        });
 
-//             },
+                        // Automatically select the first subject if available
+                        if (data.length > 0) {
+                            $('#subject_id').val(data[0].id);
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error("Error fetching subjects:", error);
+                    }
+                });
+            } else {
+                alert('Please select a class.');
+            }
+        }
 
-//         });
-//     } else {
-//        alert('danger');
-//     }
-// });//subject auto select end
-
-});
-
+        // Initial load: Trigger change event for class selection if class_id is pre-selected
+        var initial_class_id = $('#class_id').val();
+        if (initial_class_id) {
+            $('#class_id').trigger('change');
+        }
+    });
 </script>
+
+
+
+
+
+
+
+
+
 
 
 

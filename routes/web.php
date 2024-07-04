@@ -37,7 +37,8 @@ use App\Http\Controllers\Admin\CategorySubCategoryController;
 Route::get('admin/class/section/ajax/{class_id}', [StudentController::class, 'sectionAutoSelect']);
 
 //ajax for subject auto select
-Route::get('admin/getSubjects/{class_id}/{section_id}', [StudentController::class, 'subjectAutoSelect']);
+Route::get('admin/getSubjects/{class_id}/{section_id?}', [StudentController::class, 'subjectAutoSelect']);
+
 
 //=========================== admin all route=========================
 Route::get('/admin/login', [AdminController::class, 'adminLoginForm']);

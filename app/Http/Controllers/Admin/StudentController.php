@@ -38,10 +38,19 @@ class StudentController extends Controller
 
 
     //ajax for subject auto select
-    public function subjectAutoSelect($class_id,$section_id){
-        $subjects = Subject::where('clas_id',$class_id)->where('section_id',$section_id)->get();
+    public function subjectAutoSelect($class_id, $section_id=null) {
+        if ($section_id) {
+            $subjects = Subject::where('clas_id', $class_id)->where('section_id', $section_id)->get();
+        } else {
+            $subjects = Subject::where('clas_id', $class_id)->get();
+        }
         return json_encode($subjects);
     }//end method
+
+   
+
+
+
 
 
     //store student
