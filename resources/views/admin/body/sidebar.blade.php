@@ -557,11 +557,33 @@
 
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
+                                <a href="{{ route('admin.total.fee') }}"
+                                    class="nav-link {{ request()->is('admin/fees/total') ? 'active' : '' }}"
+                                    >
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Fees Total</p>
+                                </a>
+                            </li>
+                        </ul>
+
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
                                 <a href="{{ route('admin.fees.collection') }}"
                                     class="nav-link {{ request()->is('admin/fees/collection') ? 'active' : '' }}"
                                     >
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Fees Collection</p>
+                                </a>
+                            </li>
+                        </ul>
+
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('admin.fees.collection.report') }}"
+                                    class="nav-link {{ request()->is('admin/fees/collection/report') ? 'active' : '' }}"
+                                    >
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Fees Collection Report</p>
                                 </a>
                             </li>
                         </ul>

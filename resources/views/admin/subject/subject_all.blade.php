@@ -6,7 +6,45 @@
 
 @section('content')
  <section class="content">
-    .<div class="container-fluid">
+    <div class="container-fluid">
+        <form action="{{ route('admin.all.subject') }}" method="GET">
+            <div class="row">
+                <div class="col-sm-8 offset-sm-2">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label for="">Class</label>
+                                       <select name="clas_id" id="" class="form-control">
+                                        <option value="" selected disabled>Select</option>
+                                         @foreach ($classes as $class)
+                                            <option value="{{ $class->id }}">{{ $class->class_name }}</option>
+                                         @endforeach
+                                       </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label for="">Section</label>
+                                       <select name="section_id" id="" class="form-control">
+                                        <option value=""  disabled>Select</option>
+
+                                       </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4 mt-2">
+                                   <div class="form-group">
+                                      <label for=""></label>
+                                      <input type="submit" value="Filter" class="btn btn-info form-control">
+                                   </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
         <div class="row">
             <div class="col-sm-8 offset-sm-2">
                 <div class="card">
@@ -54,4 +92,31 @@
         </div>
     </div>
  </section>
+
+ {{-- javascript for section auto select --}}
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('select[name="clas_id"]').on('change',function(){
+            var class_id=$(this).val();
+            if(class_id){
+                $.ajax({
+                    url:"{{ url('/admin/class/section/ajax') }}/"+class_id,
+                    type:"GET",
+                    dataType:"json",
+                    success:function(data){
+                        var d=$('select[name="section_id"]').empty();
+                        $.each(data,function(key,value){
+                            $('select[name="section_id"]').append(
+                                '<option value="'+value.id+'">'+
+                                value.section_name+'</option>');
+                        });
+                    },
+                });
+            }else{
+                alert('danger');
+            }
+        });
+    });
+</script>
+{{-- javascript for section auto select end --}}
 @endsection

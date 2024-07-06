@@ -11,9 +11,20 @@ use App\Http\Controllers\Controller;
 class SubjectController extends Controller
 {
     //all subject
-    public function allSubject(){
-        $subjects = Subject::orderBy('id','desc')->get();
-        return view('admin.subject.subject_all',compact('subjects'));
+    public function allSubject(Request $request){
+        if($request->clas_id){
+            if($request->section_id==null){
+                $subjects = Subject::where('clas_id',$request->clas_id)->get();
+            } else {
+                $subjects = Subject::where('clas_id',$request->clas_id)->where('section_id',$request->section_id)->get();
+            }
+        } else {
+            $subjects = Subject::orderBy('id','asc')->get();
+        }
+        $classes = Clas::all();
+
+        return view('admin.subject.subject_all',compact('subjects','classes'));
+
     }//end method
 
 
@@ -39,7 +50,7 @@ class SubjectController extends Controller
 
     //store subject
     public function storeSubject(Request $request){
-      
+
         foreach($request->subject as $sub){
             $subject = new Subject();
             $subject->clas_id = $request->clas_id;

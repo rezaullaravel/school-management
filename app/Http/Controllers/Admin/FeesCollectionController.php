@@ -6,6 +6,7 @@ use App\Models\Fee;
 use App\Models\Clas;
 use App\Models\Student;
 use App\Models\FeesCategory;
+use App\Models\SessionModel;
 use Illuminate\Http\Request;
 use App\Models\FeesCollection;
 use Illuminate\Support\Facades\DB;
@@ -72,58 +73,143 @@ class FeesCollectionController extends Controller
     public function feesAssign(Request $request){
         $fees_categories = FeesCategory::all();
         $classes = Clas::all();
-        return view('admin.fees_collection.fees_assign',compact('fees_categories','classes'));
+        $sessions = SessionModel::all();
+        return view('admin.fees_collection.fees_assign',compact('fees_categories','classes','sessions'));
     }//end method
 
 
     //fees assing insert
     public function feesAssignInsert(Request $request){
-        //dd($request->all());
-        foreach($request->fees as $fees){
-            $check = Fee::where('class_id',$fees['class_id'])->where('fees_category_id',$request->fees_category_id)->first();
-            if($check){
-                $check->fees_category_id = $request->fees_category_id;
-                $check->class_id = $fees['class_id'];
-                $check->fees_amount = $fees['fees_amount'];
-                $check->save();
-            } else{
-                $fee_assign = new Fee();
-                $fee_assign->fees_category_id = $request->fees_category_id;
-                $fee_assign->class_id = $fees['class_id'];
-                $fee_assign->fees_amount = $fees['fees_amount'];
-                $fee_assign->save();
-            }
-
+        if($request->section_id==null){
+                  $check = Fee::where('clas_id', $request->clas_id)
+                        ->where('session_id', $request->session_id)
+                        ->where('fees_category_id',$request->fees_category_id)
+                        ->first();
+             } else {
+                    $check = Fee::where('clas_id', $request->clas_id)
+                       ->where('section_id', $request->section_id)
+                       ->where('session_id', $request->session_id)
+                       ->where('fees_category_id',$request->fees_category_id)
+                       ->first();
         }
 
-        return redirect()->back()->with('message','Fee Amount Inserted Successfully');
+        if($check){
+            return redirect()->back()->with('error','You have already inserted this category fee amount.');
+        } else {
+            $fee = new Fee();
+            $fee->clas_id = $request->clas_id;
+
+            $fee->section_id = $request->section_id;
+
+            $fee->session_id = $request->session_id;
+
+            $fee->fees_category_id = $request->fees_category_id;
+
+            $fee->january = $request->january;
+
+            $fee->february = $request->february;
+
+            $fee->march = $request->march;
+
+            $fee->april = $request->april;
+
+            $fee->may = $request->may;
+
+            $fee->june = $request->june;
+
+            $fee->july = $request->july;
+
+            $fee->august = $request->august;
+
+            $fee->september = $request->september;
+
+            $fee->october = $request->october;
+
+            $fee->november = $request->november;
+
+            $fee->december = $request->december;
+            $fee->save();
+
+            return redirect()->route('admin.fees.manage')->with('message','Fee Amount Inserted Successfully');
+        }
+
     }//end method
 
 
     //fees manage
     public function feesManage(Request $request){
+        if($request->clas_id){
+            if($request->section_id==null){
+                            $fees = Fee::where('clas_id', $request->clas_id)
+                            ->where('session_id', $request->session_id)
+                            ->get();
+              } else {
+                           $fees = Fee::where('clas_id', $request->clas_id)
+                           ->where('section_id', $request->section_id)
+                           ->where('session_id', $request->session_id)
+                           ->get();
+            }
+        } else {
+            $fees = Fee::all();
+        }
+
         $classes = Clas::all();
-        $fees = Fee::where('class_id',$request->class_id)->get();
-        return view('admin.fees_collection.fees_manage',compact('classes','fees'));
+        $sessions = SessionModel::all();
+        return view('admin.fees_collection.fees_manage',compact('fees','classes','sessions'));
     }//end method
 
 
-    //fees deactive
-    public function feesDeactive(Request $request,$id){
-        $fees = Fee::find($id);
-        $fees->status=0;
-        $fees->save();
-
-       return back()->with('message','Fee deactive successfully');
+    //fees edit
+    public function feesEdit($id){
+        $fee = Fee::find($id);
+        $classes = Clas::all();
+        $sessions = SessionModel::all();
+        $fees_categories = FeesCategory::all();
+        return view('admin.fees_collection.fees_edit',compact('fee','classes','sessions','fees_categories'));
     }//end method
 
-    //fees active
-    public function feesActive(Request $request,$id){
-        $fees = Fee::find($id);
-        $fees->status=1;
-        $fees->save();
-        return back()->with('message','Fee active successfully');
+
+    //fees update
+    public function feesUpdate(Request $request,$id){
+            $fee = Fee::find($id);
+            $fee->clas_id = $request->clas_id;
+
+            $fee->section_id = $request->section_id;
+
+            $fee->session_id = $request->session_id;
+
+            $fee->fees_category_id = $request->fees_category_id;
+
+            $fee->january = $request->january;
+
+            $fee->february = $request->february;
+
+            $fee->march = $request->march;
+
+            $fee->april = $request->april;
+
+            $fee->may = $request->may;
+
+            $fee->june = $request->june;
+
+            $fee->july = $request->july;
+
+            $fee->august = $request->august;
+
+            $fee->september = $request->september;
+
+            $fee->october = $request->october;
+
+            $fee->november = $request->november;
+
+            $fee->december = $request->december;
+            $fee->save();
+
+            return redirect()->route('admin.fees.manage')->with('message','Fee Amount Updated Successfully');
     }//end method
+
+
+
 
 
     //fees delete
@@ -136,80 +222,172 @@ class FeesCollectionController extends Controller
     //fees collection
     public function feesCollection(Request $request){
         $classes = Clas::all();
-        $students = Student::where('clas_id',$request->class_id)->where('status',1)->get();
-        return view('admin.fees_collection.collection',compact('classes','students'));
+        $sessions = SessionModel::all();
+
+        return view('admin.fees_collection.collection',compact('classes','sessions'));
     }//end method
 
 
-    //fees collection add
-    public function addCollection($id,$class_id,Request $request){
-        $student = Student::find($id);
-        $url = 'admin/fees/collection?'.'class_id='.$class_id;
-        $fees_collection = DB::table('fees_collections')->where('student_id',$student->id)->where('clas_id',$student->clas_id)->where('session_id',$student->session_id)->where('month',$request->month)->get();
-        return view('admin.fees_collection.collection_add',compact('student','url','fees_collection'));
-    }//end method
 
-
-    //fees collection insert
-    public function insertCollection($student_id,$class_id,$session_id,$total){
-       $url = 'admin/fees/collection/add/'.$student_id.'/'.$class_id;
-       $student = Student::find($student_id);
-       return view('admin.fees_collection.collection_insert',compact('student_id','class_id','session_id','total','url','student'));
-    }//end method
 
 
     //store collection
     public function storeCollection(Request $request){
-        $check = FeesCollection::where('student_id',$request->student_id)->where('clas_id',$request->clas_id)->where('session_id',$request->session_id)->where('month',$request->month)->latest()->first();
-
-        if($check){
-
-
-            if($request->given_amount>$check->due_amount){
-                return redirect()->back()->with('sms','The given amount is larger than the due amount.');
-            } else{
-                $fees_collection = new FeesCollection();
-                $fees_collection->student_id = $request->student_id;
-                $fees_collection->clas_id = $request->clas_id;
-                $fees_collection->session_id = $request->session_id;
-                $fees_collection->given_amount = $request->given_amount;
-                $fees_collection->due_amount = $check->due_amount-$request->given_amount;
-                $fees_collection->month = $request->month;
-                 $fees_collection->save();
-            }
-
-
-        } else{
-
-           if($request->given_amount>$request->total_fee){
-            return redirect()->back()->with('sms','The given amount is larger than the due amount.');
-           } else{
-            $fees_collection = new FeesCollection();
-            $fees_collection->student_id = $request->student_id;
-            $fees_collection->clas_id = $request->clas_id;
-            $fees_collection->session_id = $request->session_id;
-            $fees_collection->given_amount = $request->given_amount;
-            $fees_collection->due_amount = $request->total_fee-$request->given_amount;
-            $fees_collection->month = $request->month;
-             $fees_collection->save();
-           }
-
+        if($request->section_id==null){
+            $student = Student::where('registration',$request->registration)->where('clas_id', $request->clas_id)
+                ->where('session_id', $request->session_id)->first();
+        } else {
+            $student = Student::where('registration',$request->registration)->where('clas_id', $request->clas_id)->where('section_id',$request->section_id)
+            ->where('session_id', $request->session_id)->first();
         }
 
+
+                if($request->section_id==null){
+                        $fees = Fee::where('clas_id', $request->clas_id)
+                                    ->where('session_id', $request->session_id)
+                                    ->get();
+                } else {
+                    $fees = Fee::where('clas_id', $request->clas_id)
+                                   ->where('section_id', $request->section_id)
+                                   ->where('session_id', $request->session_id)
+                                   ->get();
+                    }
+
+
+                $sum_january = 0;
+                $sum_february = 0;
+                $sum_march = 0;
+                $sum_april = 0;
+                $sum_may = 0;
+                $sum_june = 0;
+                $sum_july = 0;
+                $sum_august = 0;
+                $sum_september = 0;
+                $sum_october = 0;
+                $sum_november = 0;
+                $sum_december = 0;
+                foreach($fees as $fee) {
+
+                        $sum_january = $sum_january + $fee->january;
+
+                        $sum_february = $sum_february + $fee->february;
+
+                        $sum_march = $sum_march + $fee->march;
+
+                        $sum_april = $sum_april + $fee->april;
+
+                        $sum_may = $sum_may + $fee->may;
+
+                        $sum_june = $sum_june + $fee->june;
+
+                        $sum_july = $sum_july + $fee->july;
+
+                        $sum_august = $sum_august + $fee->august;
+
+                        $sum_september = $sum_september + $fee->september;
+
+                        $sum_october = $sum_october + $fee->october;
+
+                        $sum_november = $sum_november + $fee->november;
+
+                        $sum_december = $sum_december + $fee->december;
+
+                }
+
+
+
+
+
+
+                if($student){
+                $fees_collection = new FeesCollection();
+
+                $fees_collection->registration =  $student->registration;
+
+                $fees_collection->clas_id = $request->clas_id;
+
+                $fees_collection->section_id = $request->section_id;
+
+                $fees_collection->session_id = $request->session_id;
+
+                $fees_collection->given_amount = $request->given_amount;
+
+                if($request->month == 'january') {
+                    $fees_collection->total_fee = $sum_january;
+                } elseif($request->month == 'february') {
+                    $fees_collection->total_fee = $sum_february;
+                } elseif($request->month == 'march') {
+                    $fees_collection->total_fee = $sum_march;
+                } elseif($request->month == 'april') {
+                    $fees_collection->total_fee = $sum_april;
+                } elseif($request->month == 'may') {
+                    $fees_collection->total_fee = $sum_may;
+                } elseif($request->month == 'june') {
+                    $fees_collection->total_fee = $sum_june;
+                } elseif($request->month == 'july') {
+                    $fees_collection->total_fee = $sum_july;
+                } elseif($request->month == 'august') {
+                    $fees_collection->total_fee = $sum_august;
+                } elseif($request->month == 'september') {
+                    $fees_collection->total_fee = $sum_september;
+                } elseif($request->month == 'october') {
+                    $fees_collection->total_fee = $sum_october;
+                } elseif($request->month == 'november') {
+                    $fees_collection->total_fee = $sum_november;
+                } elseif($request->month == 'december') {
+                    $fees_collection->total_fee = $sum_december;
+                }
+                $fees_collection->month = $request->month;
+                $fees_collection->save();
+
         return redirect()->back()->with('message','Fees Collection Added Successfully');
+                } else {
+                    return redirect()->back()->with('error','Invalid registraion number');
+                }
+
 
 
     }//end method
 
 
     //total fee
-    public function totalFee($id,$class_id){
-        $url = 'admin/fees/collection?'.'class_id='.$class_id;
-        $student = Student::find($id);
-        $total_fees = Fee::where('class_id', $student->clas_id)->get();
-        return view('admin.fees_collection.total_fee',compact('url','total_fees','student'));
+    public function totalFee(Request $request){
+         $classes = Clas::all();
+         $sessions = SessionModel::all();
+
+         if($request->section_id==null){
+                       $total_fees = Fee::where('clas_id', $request->clas_id)
+                        ->where('session_id', $request->session_id)
+                        ->get();
+               } else {
+                       $total_fees = Fee::where('clas_id', $request->clas_id)
+                       ->where('section_id', $request->section_id)
+                       ->where('session_id', $request->session_id)
+                       ->get();
+          }
+        return view('admin.fees_collection.total_fee',compact('classes','sessions','total_fees'));
     }
 
+  //fees collection report
+  public function feesCollectionReport(Request $request){
+         $classes = Clas::all();
+         $sessions = SessionModel::all();
+
+         if($request->section_id==null)
+            {
+                       $students = Student::where('clas_id', $request->clas_id)
+                        ->where('session_id', $request->session_id)
+                        ->where('status',1)
+                        ->get();
+              } else {
+                       $students = Student::where('clas_id', $request->clas_id)
+                       ->where('section_id', $request->section_id)
+                       ->where('session_id', $request->session_id)
+                       ->where('status',1)
+                       ->get();
+                     }
+    return view('admin.fees_collection.collection_report',compact('classes','sessions','students'));
+  }//end method
 
 
 

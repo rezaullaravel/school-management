@@ -196,17 +196,16 @@ Route::prefix('admin')->middleware(['admin'])->group(function () {
 
     //fees manage
     Route::get('/fees/manage',[FeesCollectionController::class,'feesManage'])->name('admin.fees.manage');
-    Route::get('/fees/deactive/{id}',[FeesCollectionController::class,'feesDeactive'])->name('admin.fees.deactive');
-    Route::get('/fees/active/{id}',[FeesCollectionController::class,'feesActive'])->name('admin.fees.active');
+    Route::get('/fees/edit/{id}',[FeesCollectionController::class,'feesEdit'])->name('admin.fees.edit');
     Route::get('/fees/delete/{id}',[FeesCollectionController::class,'feesDelete'])->name('admin.fees.delete');
+    Route::post('/fees/update/{id}',[FeesCollectionController::class,'feesUpdate'])->name('admin.fees.update');
 
 
     //fees collection
     Route::get('/fees/collection',[FeesCollectionController::class,'feesCollection'])->name('admin.fees.collection');
-    Route::get('/fees/collection/add/{id}/{class_id}',[FeesCollectionController::class,'addCollection'])->name('admin.add.collection');
-    Route::get('/fees/collection/insert/{student_id}/{class_id}/{session_id}/{total}',[FeesCollectionController::class,'insertCollection'])->name('admin.insert.collection');
     Route::post('/fees/collection/store',[FeesCollectionController::class,'storeCollection'])->name('admin.collection.store');
-    Route::get('/fees/total/{id}/{class_id}',[FeesCollectionController::class,'totalFee'])->name('admin.total.fee');
+    Route::get('/fees/total',[FeesCollectionController::class,'totalFee'])->name('admin.total.fee');
+    Route::get('/fees/collection/report',[FeesCollectionController::class,'feesCollectionReport'])->name('admin.fees.collection.report');
 
 
     //payment history

@@ -14,6 +14,14 @@ class Fee extends Model
     }
 
     public function clas(){
-        return $this->belongsTo(Clas::class,'class_id')->withDefault();
+        return $this->belongsTo(Clas::class,'clas_id')->withDefault();
+    }
+
+    public function section(){
+        return $this->belongsTo(Section::class,'section_id')->withDefault();
+    }
+
+    public function session(){
+        return $this->belongsTo(SessionModel::class,'session_id')->withDefault();
     }
 }
