@@ -26,6 +26,7 @@ use App\Http\Controllers\Admin\StudentIdcardController;
 use App\Http\Controllers\Admin\FeesCollectionController;
 use App\Http\Controllers\Admin\PaymentHistoryController;
 use App\Http\Controllers\Admin\FrontendSettingController;
+use App\Http\Controllers\Admin\StudentPromotionController;
 use App\Http\Controllers\Student\StudentProfileController;
 use App\Http\Controllers\Teacher\TeacherProfileController;
 use App\Http\Controllers\Admin\StudentAttendenceController;
@@ -142,7 +143,7 @@ Route::prefix('admin')->middleware(['admin'])->group(function () {
     Route::get('/sub_category/edit/{id}', [CategorySubCategoryController::class, 'editSubCategory'])->name('admin.edit.subCategory');
     Route::post('/sub_category/update', [CategorySubCategoryController::class, 'updateSubCategory'])->name('admin.update.subCategory');
 
-    //admin addmission
+    //student addmission
     Route::get('/admission/student', [AdmissionController::class, 'admissionApplicantList'])->name('admin.admission.student');
 
     //accept application
@@ -206,6 +207,11 @@ Route::prefix('admin')->middleware(['admin'])->group(function () {
     Route::post('/fees/collection/store',[FeesCollectionController::class,'storeCollection'])->name('admin.collection.store');
     Route::get('/fees/total',[FeesCollectionController::class,'totalFee'])->name('admin.total.fee');
     Route::get('/fees/collection/report',[FeesCollectionController::class,'feesCollectionReport'])->name('admin.fees.collection.report');
+
+
+    //student promotion
+    Route::get('/_student_promotion',[StudentPromotionController::class,'index'])->name('admin.student_promotion');
+    Route::post('/_student_promotion/insert',[StudentPromotionController::class,'store'])->name('admin.promotion.insert');
 
 
     //payment history

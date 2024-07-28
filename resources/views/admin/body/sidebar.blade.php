@@ -591,6 +591,29 @@
                     {{-- student fees collection end --}}
 
 
+                    {{-- student promotion system --}}
+                    <li class="nav-item {{ request()->is('admin/_student_promotion*') ? 'menu-open' : '' }}">
+                        <a href="#" class="nav-link {{ request()->is('admin/_student_promotion*') ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-chart-pie"></i>
+                            <p>
+                                Student Promotion
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('admin.student_promotion') }}"
+                                    class="nav-link {{ request()->is('admin/_student_promotion') ? 'active' : '' }}"
+                                    >
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Promotion</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    {{-- student promotion system end --}}
+
+
                     {{-- payment --}}
                     <li class="nav-item {{ request()->is('admin/payment*') ? 'menu-open' : '' }}">
                         <a href="#" class="nav-link {{ request()->is('admin/payment*') ? 'active' : '' }}">
