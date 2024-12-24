@@ -29,15 +29,8 @@
                                 <label>Student Registration<span class="text-danger">*</span></label>
                                 <input type="text" name="registration"  class="form-control" placeholder="Enter Student Registration..." required>
                             </div>
-<<<<<<< HEAD
 
 
-=======
->>>>>>> a06b346c102aa62b4c3f6d699696ecc60c5e8240
-
-                           
-
-                            
                             <div class="form-group">
                                 <label>Examination Name<span class="text-danger">*</span></label>
                                 <select name="exam_id"  class="form-control" required>
@@ -46,6 +39,11 @@
                                         <option value="{{ $exam->id }}"> {{ $exam->exam_name }}</option>
                                     @endforeach
                                 </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Result Publication Date<span class="text-danger">*</span></label>
+                                <input type="date" name="result_date"  class="form-control">
                             </div>
 
                             <div class="form-group">

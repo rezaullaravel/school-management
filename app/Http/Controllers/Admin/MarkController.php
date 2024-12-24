@@ -183,19 +183,19 @@ class MarkController extends Controller
     //result get from database
     public function getResult(Request $request)
     {
-        $student = Student::where('registration', $request->registration)->first();
-<<<<<<< HEAD
 
-=======
-        
->>>>>>> a06b346c102aa62b4c3f6d699696ecc60c5e8240
+        $result_date = $request->result_date;
+        $student = Student::where('registration', $request->registration)->first();
+
         if ($student) {
             $marks = Mark::where('student_id', $student->id)->where('clas_id', $student->clas_id)->where('session_id', $student->session_id)->where('exam_id', $request->exam_id)->get();
 
             $exam = Exam::where('id', $request->exam_id)->first();
 
+            $title = 'Result';
+
             if (count($marks)>0) {
-                return view('admin.result.result_final', compact('marks', 'student', 'exam'));
+                return view('admin.result.result_final', compact('marks', 'student', 'exam','title','result_date'));
             } else {
                 return redirect()->back()->with('sms', 'Something went wrong....Please try again');
             }
