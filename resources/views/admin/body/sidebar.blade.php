@@ -100,7 +100,7 @@
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                     data-accordion="false">
 
-                    <li class="nav-item {{ request()->is('admin/class*') ? 'menu-open' : '' }}">
+                    {{-- <li class="nav-item {{ request()->is('admin/class*') ? 'menu-open' : '' }}">
                         <a href="#" class="nav-link {{ request()->is('admin/class*') ? 'active' : '' }}">
                             <i class="nav-icon fas fa-chart-pie"></i>
                             <p>
@@ -160,6 +160,63 @@
                             </li>
                         </ul>
                     </li>
+
+                    <li class="nav-item {{ request()->is('admin/subject*') ? 'menu-open' : '' }}">
+                        <a href="#" class="nav-link {{ request()->is('admin/subject*') ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-chart-pie"></i>
+                            <p>
+                                Subject
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('admin.all.subject') }}"
+                                    class="nav-link {{ request()->is('admin/subject/all') ? 'active' : '' }}"
+                                    >
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Subject List</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li> --}}
+
+                    <li class="nav-item {{ request()->is('admin/class*') || request()->is('admin/section*') || request()->is('admin/session*') || request()->is('admin/subject*') ? 'menu-open' : '' }}">
+                        <a href="#" class="nav-link {{ request()->is('admin/class*') || request()->is('admin/section*') || request()->is('admin/session*') || request()->is('admin/subject*') ? 'active' : '' }}">
+                          <i class="nav-icon fas fa-chart-pie"></i>
+                          <p>
+                            Academic
+                            <i class="right fas fa-angle-left"></i>
+                          </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                          <li class="nav-item">
+                            <a href="{{ route('admin.all.class') }}" class="nav-link {{ request()->is('admin/class/all') ? 'active' : '' }}">
+                              <i class="far fa-circle nav-icon"></i>
+                              <p>Class</p>
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a href="{{ route('admin.all.section') }}" class="nav-link {{ request()->is('admin/section*') ? 'active' : '' }}">
+                              <i class="far fa-circle nav-icon"></i>
+                              <p>Section</p>
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a href="{{ route('admin.all.session') }}" class="nav-link {{ request()->is('admin/session*') ? 'active' : '' }}">
+                              <i class="far fa-circle nav-icon"></i>
+                              <p>Session</p>
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a href="{{ route('admin.all.subject') }}" class="nav-link {{ request()->is('admin/subject/all') ? 'active' : '' }}">
+                              <i class="far fa-circle nav-icon"></i>
+                              <p>Subject</p>
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+
 
 
                     <li class="nav-item {{ request()->is('admin/designation*') ? 'menu-open' : '' }}">
@@ -258,25 +315,6 @@
                     </li>
 
 
-                    <li class="nav-item {{ request()->is('admin/subject*') ? 'menu-open' : '' }}">
-                        <a href="#" class="nav-link {{ request()->is('admin/subject*') ? 'active' : '' }}">
-                            <i class="nav-icon fas fa-chart-pie"></i>
-                            <p>
-                                Subject
-                                <i class="right fas fa-angle-left"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="{{ route('admin.all.subject') }}"
-                                    class="nav-link {{ request()->is('admin/subject/all') ? 'active' : '' }}"
-                                    >
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Subject List</p>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
 
 
                     <li class="nav-item {{ request()->is('admin/exam*') ? 'menu-open' : '' }}">

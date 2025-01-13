@@ -6,7 +6,7 @@
 
 @section('content')
  <section class="content">
-    .<div class="container-fluid">
+    <div class="container-fluid">
         <div class="row">
             <div class="col-sm-8 offset-sm-2">
                 <div class="card card-primary card-outline">
