@@ -51,11 +51,22 @@ class SubjectController extends Controller
     //store subject
     public function storeSubject(Request $request){
 
-        foreach($request->subject as $sub){
+
+
+        $request->validate([
+            'clas_id' => 'required',
+            'subject' => 'required|array',
+            'subject.*' => 'required|string',
+            'type' => 'required|array',
+            'type.*' => 'required|in:mandatory,optional',
+        ]);
+
+        foreach ($request->subject as $index => $sub) {
             $subject = new Subject();
             $subject->clas_id = $request->clas_id;
             $subject->section_id = $request->section_id;
             $subject->subject = $sub;
+            $subject->type = $request->type[$index];
             $subject->save();
         }
 
@@ -97,7 +108,9 @@ class SubjectController extends Controller
     //edit subject
     public function editSubject($id){
         $subject = Subject::find($id);
-        return view('admin.subject.subject_edit',compact('subject'));
+        $classes = Clas::all();
+        $sections = Section::where('clas_id',$subject->clas_id)->get();
+        return view('admin.subject.subject_edit',compact('subject','classes','sections'));
     }//end method
 
 
@@ -111,12 +124,15 @@ class SubjectController extends Controller
     //update subject
     public function updateSubject(Request $request){
         $request->validate([
-            'subject'=>'required|unique:subjects,subject,'.$request->id,
+            'subject'=>'required',
         ],[
             'subject.required'=>'The subject name is required.',
         ]);
         $subject = Subject::find($request->id);
+        $subject->clas_id = $request->clas_id;
+        $subject->section_id = $request->section_id;
         $subject->subject = $request->subject;
+        $subject->type = $request->type;
         $subject->save();
         return redirect()->route('admin.all.subject')->with('message','Subject Updated Successfully');
     }//end method

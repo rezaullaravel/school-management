@@ -6,10 +6,10 @@
 
 @section('content')
  <section class="content">
-    <div class="container-fluid">
+    <div class="container-fluid pt-3">
         <form action="{{ route('admin.all.subject') }}" method="GET">
             <div class="row">
-                <div class="col-sm-8 offset-sm-2">
+                <div class="col-sm-12">
                     <div class="card">
                         <div class="card-body">
                             <div class="row">
@@ -33,12 +33,16 @@
                                        </select>
                                     </div>
                                 </div>
-                                <div class="col-sm-4 mt-2">
+                                <div class="col-sm-2 mt-2">
                                    <div class="form-group">
                                       <label for=""></label>
                                       <input type="submit" value="Filter" class="btn btn-info form-control">
                                    </div>
                                 </div>
+
+                                <div class="col-sm-2" style="margin-top: 2rem;">
+                                    <a href="{{ route('admin.all.subject') }}" class="btn btn-primary btn-block">Reset</a>
+                                 </div>
                             </div>
                         </div>
                     </div>
@@ -46,7 +50,7 @@
             </div>
         </form>
         <div class="row">
-            <div class="col-sm-8 offset-sm-2">
+            <div class="col-sm-12">
                 <div class="card">
                     <div class="card-header">
                         <h4>All Subject
@@ -63,6 +67,7 @@
                                         <th>Class</th>
                                         <th>Section</th>
                                         <th>Subject Name</th>
+                                        <th>Subject Type</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -73,6 +78,7 @@
                                             <td>{{ $row->clas->class_name }}</td>
                                             <td>{{ $row->section->section_name }}</td>
                                             <td>{{ $row->subject }}</td>
+                                            <td>{{ $row->type }}</td>
                                             <td>
                                                 <a href="{{ route('admin.edit.subject',$row->id) }}" class="btn btn-info btn-sm" title="Edit"><i class="las la-pen"></i></a>
                                                 <a href="{{ route('admin.delete.subject',$row->id) }}" class="btn btn-danger btn-sm" onclick="confirmation(event)" title="Delete"><i class="las la-trash"></i></a>

@@ -119,7 +119,7 @@ Route::prefix('admin')->middleware(['admin'])->group(function () {
     Route::get('/fetch/result/by-class', [MarkController::class, 'fetchResultByClass'])->name('admin.fetch-result-by-class');
     Route::get('/result/modify', [MarkController::class, 'modifyResult'])->name('admin.result.modify');
     Route::get('/result/view-modify', [MarkController::class, 'getResultForModify'])->name('admin.modify-result');
-    Route::get('/result/edit/{id}', [MarkController::class, 'editResult'])->name('admin.result.edit');
+    Route::get('/result/edit/{id}/{registration}/{clas_id}/{session_id}/{exam_id}', [MarkController::class, 'editResult'])->name('admin.result.edit');
     Route::post('/result/update', [MarkController::class, 'updateResult'])->name('admin.update.result');
     Route::get('/result/delete/{id}', [MarkController::class, 'deleteResult'])->name('admin.result.delete');
 

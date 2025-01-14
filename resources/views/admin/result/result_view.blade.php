@@ -8,7 +8,7 @@
  <section class="content">
     .<div class="container-fluid">
         <div class="row">
-            <div class="col-sm-8 offset-sm-2">
+            <div class="col-sm-12">
                 @if (session('sms'))
                     <div class="alert alert-danger">
                         <h4 class="text-center">{{ Session::get('sms') }}</h4>
@@ -26,8 +26,30 @@
 
 
                             <div class="form-group">
-                                <label>Student Registration<span class="text-danger">*</span></label>
+                                <label>Student Registration <span class="text-danger">*</span></label>
                                 <input type="text" name="registration"  class="form-control" placeholder="Enter Student Registration..." required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="">Class<span class="text-danger">*</span></label>
+                                <select name="clas_id" class="form-control" required>
+                                    <option value="" selected disabled>Select Class</option>
+                                    @foreach ($classes as $class)
+                                      <option value="{{ $class->id }}">{{ $class->class_name }}</option>
+
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="">Session<span class="text-danger">*</span></label>
+                                <select name="session_id" class="form-control" required>
+                                    <option value="" selected disabled>Select Session</option>
+                                    @foreach ($sessions as $session)
+                                      <option value="{{ $session->id }}">{{ $session->session_year }}</option>
+
+                                    @endforeach
+                                </select>
                             </div>
 
 

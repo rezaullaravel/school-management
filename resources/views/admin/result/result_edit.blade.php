@@ -12,7 +12,7 @@
                 <div class="card">
                     <div class="card-header">
                         <h4>Edit Result.
-                            <a href="{{ url(Session::get('previousUrl')) }}" class="btn btn-primary" style="float: right;"><i class="las la-angle-double-left"></i>Back</a>
+                            <a href="{{ url($previousUrl) }}" class="btn btn-primary" style="float: right;"><i class="las la-angle-double-left"></i>Back</a>
                         </h4>
                     </div>
 
@@ -21,6 +21,7 @@
                             @csrf
 
                             <input type="hidden" name="id" value="{{ $mark->id }}" class="form-control" placeholder="Principal">
+                            <input type="hidden" name="previousUrl" value="{{ $previousUrl }}" class="form-control" placeholder="Principal">
 
                             <div class="form-group">
                                 <label>Mark<span class="text-danger">*</span></label>

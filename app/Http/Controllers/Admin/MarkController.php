@@ -75,11 +75,26 @@ class MarkController extends Controller
         $exam_id = $request->exam_id;
         $session_id = $request->session_id;
 
+         // Fetch the subject to check if it's mandatory or optional
+        $subject = Subject::find($subject_id);
+
         // Ensure $class_id is a single value, not an array
 
         if ($student_ids) {
             foreach ($student_ids as $key => $student_id) {
-                $check = Mark::where('subject_id', $subject_id)->where('clas_id', $class_id)->where('student_id', $student_id)->first();
+                // Check if the subject is optional and if the mark is empty
+                if ($subject && $subject->type === 'optional' && empty($marks[$key])) {
+                    // Skip inserting for optional subjects with no marks
+                    continue;
+                }
+
+                $check = Mark::where('subject_id', $subject_id)
+                ->where('clas_id', $class_id)
+                ->where('section_id', $section_id)
+                ->where('session_id', $session_id)
+                ->where('exam_id', $exam_id )
+                ->where('student_id', $student_id)
+                ->first();
                 if ($check) {
                     $mark = $check;
                     $mark->student_id = $student_id;
@@ -187,15 +202,19 @@ class MarkController extends Controller
         $result_date = $request->result_date;
         $student = Student::where('registration', $request->registration)->first();
 
+        $class = Clas::where('id',$request->clas_id)->first();
+
+        $session = SessionModel::where('id',$request->session_id)->first();
+
         if ($student) {
-            $marks = Mark::where('student_id', $student->id)->where('clas_id', $student->clas_id)->where('session_id', $student->session_id)->where('exam_id', $request->exam_id)->get();
+            $marks = Mark::where('student_id', $student->id)->where('clas_id', $request->clas_id)->where('session_id', $request->session_id)->where('exam_id', $request->exam_id)->get();
 
             $exam = Exam::where('id', $request->exam_id)->first();
 
             $title = 'Result';
 
             if (count($marks)>0) {
-                return view('admin.result.result_final', compact('marks', 'student', 'exam','title','result_date'));
+                return view('admin.result.result_final', compact('marks', 'student', 'exam','title','result_date','class','session'));
             } else {
                 return redirect()->back()->with('sms', 'Something went wrong....Please try again');
             }
@@ -265,14 +284,17 @@ class MarkController extends Controller
     public function getResultForModify(Request $request)
     {
         $student = Student::where('registration', $request->registration)->first();
+        $class = Clas::where('id',$request->clas_id)->first();
+
+        $session = SessionModel::where('id',$request->session_id)->first();
         if ($student) {
 
-            $marks = Mark::where('student_id', $student->id)->where('clas_id', $student->clas_id)->where('session_id', $student->session_id)->where('exam_id', $request->exam_id)->get();
+            $marks = Mark::where('student_id', $student->id)->where('clas_id', $request->clas_id)->where('session_id', $request->session_id)->where('exam_id', $request->exam_id)->get();
 
             $exam = Exam::where('id', $request->exam_id)->first();
 
             if (count($marks)>0) {
-                return view('admin.result.result_view_modify', compact('marks', 'student', 'exam'));
+                return view('admin.result.result_view_modify', compact('marks', 'student', 'exam','class','session'));
             } else {
                 return redirect()->back()->with('sms', 'Something went wrong....Please try again');
             }
@@ -301,15 +323,14 @@ class MarkController extends Controller
     } //end method
 
     //edit result
-    public function editResult($id, Request $request)
+    public function editResult($id,$registration,$clas_id,$session_id,$exam_id, Request $request)
     {
+
         $mark = Mark::find($id);
         // Capture the previous URL
-        $previousUrl = $request->session()->get('previousUrl', url()->previous());
+        $previousUrl = "/admin/result/view-modify?registration=$registration&clas_id=$clas_id&session_id=$session_id&exam_id=$exam_id";
 
-        // Store it in the session
-        $request->session()->put('previousUrl', $previousUrl);
-        return view('admin.result.result_edit', compact('mark'));
+        return view('admin.result.result_edit', compact('mark','previousUrl'));
     } //end method
 
     //edit result from teacher
@@ -333,7 +354,7 @@ class MarkController extends Controller
         $mark = Mark::find($request->id);
         $mark->mark = $request->mark;
         $mark->save();
-        return redirect(Session::get('previousUrl'))->with('message', 'Result Updated Successfully');
+        return redirect($request->previousUrl)->with('message', 'Result Updated Successfully');
     } //end method
 
     //update result from teacher
