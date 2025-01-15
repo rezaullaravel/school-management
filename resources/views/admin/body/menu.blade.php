@@ -10,7 +10,7 @@
     <ul class="navbar-nav ml-auto">
 
         <li class="nav-item">
-            <a class="nav-link btn btn-primary"  href="{{ url('/') }}" role="button">
+            <a class="nav-link btn btn-primary text-white"  href="{{ url('/') }}" role="button">
                 <i class="las la-angle-double-left"></i>Back To Side
             </a>
           </li>

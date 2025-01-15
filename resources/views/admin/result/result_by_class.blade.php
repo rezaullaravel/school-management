@@ -59,7 +59,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <input type="submit" class="btn btn-success" value="Submit" style="float: right;">
+                                    <input type="submit" class="btn btn-primary" value="Submit" style="float: right;">
                                 </div>
                             </form>
                         </div>

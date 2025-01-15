@@ -200,7 +200,7 @@
                                             $isOptionalExists = $marks->contains(function ($mark) {
                                                 return $mark->subject->type == 'optional';
                                             });
-                                            
+
                                             // Calculate the total result
                                             if ($x == 'fail') {
                                                 $result = 0;
